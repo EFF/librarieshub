@@ -35,6 +35,8 @@ else
                 if(results.Items.Request.IsValid == 'True' && results.Items.Item.length > 0)
                 {
                   console.dir(results.Items.Item[0]);
+                  console.dir(this.Book);
+                  /*
                   var i, item = results.Items.Item;
                   for(i in item)
                   {
@@ -52,7 +54,7 @@ else
                       link: item[i].DetailPageURL}];
                     this.api.addBook(book);
                     search.addBook(book);
-                  }
+                  }//*/
                 }
                 search.end();
               }
