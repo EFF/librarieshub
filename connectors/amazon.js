@@ -52,7 +52,7 @@ else
                       link: item[i].DetailPageURL}];
                     this.api.addBook(book);
                     search.addBook(book);
-                  }*/
+                  }
                 }
                 search.end();
               }
