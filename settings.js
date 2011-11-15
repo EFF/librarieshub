@@ -1,6 +1,6 @@
 var Settings = {
   pg:   {
-    url     : ''//'tcp://'+settings.PG_USER+':'+settings.PG_PASSW+'@'+settings.PG_HOST+'/'+settings.PG_DATABASE
+    url     : 'tcp://postgres:postgres@ec2-107-22-160-15.compute-1.amazonaws.com/bookfinder'
   },
   amazon: {
     awsId     : process.env.AWSID, // your AWS API key

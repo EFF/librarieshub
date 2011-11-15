@@ -35,6 +35,8 @@ else
                 if(results.Items.Request.IsValid == 'True')
                 {
                   console.dir(results.Items.Item[0]);
+                  //var i, book;
+                  //for(
                 }
                 search.end();
               }
