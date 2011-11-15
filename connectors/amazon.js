@@ -56,5 +56,5 @@ else
       }
   };
   
-  //module.exports = Amazon;
+  module.exports = Amazon;
 }
