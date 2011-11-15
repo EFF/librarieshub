@@ -32,7 +32,10 @@ else
               }
               else
               {
-                console.dir(results);
+                if(results.Items.Request.IsValid == 'True')
+                {
+                  console.dir(results.Items.Item[0]);
+                }
                 search.end();
               }
           });
