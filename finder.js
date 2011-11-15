@@ -51,6 +51,8 @@ finder.prototype = {
     },
     addConnector: function(connector){
       var oConnect = new connector(this, finder.Book);
+      console.log(' >> init connector '.red+oConnect.name);
+      console.dir(finder.Book);
       this.connectors.push(oConnect);
     }
     
@@ -62,7 +64,7 @@ finder.Book = function(isbn, title)
     this.isbn = isbn;
     this.title = title;
     this.locations = [];
-    Object.defineProperty(this, 'refCpt', {value : 0, enumerable:false });
+    //Object.defineProperty(this, 'refCpt', {value : 0, enumerable:false });
 };
 
 module.exports = finder;
