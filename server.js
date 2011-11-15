@@ -72,7 +72,7 @@ var server = http.createServer(function(req, res){
             {
                 var list = oSearch.list();
                 res.writeHead(200, headers);
-                res.end(JSON.stringify({success: true, total: list.length, results: list});
+                res.end(JSON.stringify({success: true, total: list.length, results: list}));
             });
         }
         else if(u.pathname.substr(5, 3) == 'get')
