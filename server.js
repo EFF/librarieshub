@@ -114,9 +114,8 @@ var server = http.createServer(function(req, res){
         }
         else
         {
-            res.writeHead(404, {'Content-Type': 'text/html'});
-            file = fs.createReadStream(path.join(__dirname, 'public/404.html'));
-            file.pipe(res);
+            res.writeHead(404, {'Content-Type': 'text/plain'});
+            res.end('NOT FOUND !');
         }
     });
 }).listen(process.env.PORT, function(){
@@ -129,7 +128,7 @@ if(typeof process.env.C9_SELECTED_FILE != 'undefined')
 
 setInterval(function(){
   console.log(' ... '+'heartbeat'.green+' ... ');
-  }, 15000);
+  }, 600000);
 
 process.on('exit', function () {
   console.log(' >>> Server shutting down... ');
