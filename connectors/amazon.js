@@ -32,11 +32,25 @@ else
               }
               else
               {
-                if(results.Items.Request.IsValid == 'True')
+                if(results.Items.Request.IsValid == 'True' && results.Items.Item.length > 0)
                 {
                   console.dir(results.Items.Item[0]);
-                  //var i, book;
-                  //for(
+                  /*var i, item = results.Items.Item;
+                  for(i in item)
+                  {
+                    var book = new this.Book(item[i].ItemAttributes.EAN, item[i].ItemAttributes.EAN);
+                    book.author = item[i].ItemAttributes.Author;
+                    book.year = item[i].ItemAttributes.PublicationDate.substr(0,4);
+                    book.publication = item[i].ItemAttributes.PublicationDate;
+                    book.locations = [{
+                      type: 'webStore',
+                      name: 'Amazon',
+                      price: {
+                        amount: item[i].ItemAttributes.ListPrice.Amount,
+                        currency: item[i].ItemAttributes.ListPrice.CurrencyCode
+                        },
+                      link: item[i].DetailPageURL}];
+                  }*/
                 }
                 search.end();
               }

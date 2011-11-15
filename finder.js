@@ -62,6 +62,7 @@ finder.Book = function(isbn, title)
     this.isbn = isbn;
     this.title = title;
     this.locations = [];
+    Object.defineProperty(this, 'refCpt', {value : 0, enumerable:false });
 };
 
 module.exports = finder;

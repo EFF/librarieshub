@@ -51,6 +51,7 @@ headers['Content-Type'] = 'application/json';
 
 var server = http.createServer(function(req, res){
     var u = url.parse(req.url);
+    console.log('>>> Request on '+u.pathname.cyan);
     if(u.pathname.substr(0, 4) == '/api')
     {
         var err400 = function()
@@ -61,15 +62,17 @@ var server = http.createServer(function(req, res){
         // serve api call
         if(typeof u.query == 'undefined') return err400();
         var query = querystring.parse(u.query);
+        console.log(u.pathname.substr(4, 6));
         if(u.pathname.substr(5, 6) == 'search')
         {
+            console.log(">> Search!");
             if(typeof query.s == 'undefined') return err400();
             var oSearch = new Search(query.s);
             return api.search(oSearch, function(err)
             {
                 var list = oSearch.list();
                 res.writeHead(200, headers);
-                res.end(JSON.stringify({success: true, total: list.length, results: list}));
+                res.end(JSON.stringify({success: true, total: list.length, results: list});
             });
         }
         else if(u.pathname.substr(5, 3) == 'get')
