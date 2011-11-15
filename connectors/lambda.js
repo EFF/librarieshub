@@ -69,4 +69,4 @@ Lambda.prototype = {
     }
 };
 
-module.exports = Lambda;
+//module.exports = Lambda;
