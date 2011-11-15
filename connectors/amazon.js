@@ -25,9 +25,16 @@ else
               'Keywords': search.s,
               'ResponseGroup': 'ItemAttributes,Offers'
           }, function(error, results) {
-              if (error) { console.log('Erro : '+error); }
+              if(error)
+              {
+                console.log('Error : '+error);
+                search.end();
+              }
               else
-                  console.dir(results);
+              {
+                console.dir(results);
+                search.end();
+              }
           });
           /*
           // query == search.s
@@ -40,7 +47,7 @@ else
           
           this.api.addBook(book);
           search.addBook(book);*/
-          search.end();
+          
       }
   };
   
