@@ -31,7 +31,8 @@ $('#form_search').submit(function(e) {
 	
   var keywords = $("#keywords").val();
   
-  var url = 'http://hackathonqc.librarieshub.com/api/search?s=' + keywords;
+//  var url = 'http://hackathonqc.librarieshub.com/api/search?s=' + keywords;
+  var url = '/api/search?s=' + keywords;
   
   // Geolocalisation
   if($.cookie('coords-latitude')) url += '&lat=' + $.cookie('coords-latitude');
