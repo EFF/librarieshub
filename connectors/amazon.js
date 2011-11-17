@@ -33,29 +33,43 @@ else
               }
               else
               {
-                if(results.Items.Request.IsValid == 'True' && results.Items.Item.length > 0)
+                  console.dir(results.Items);
+                if(results.Items.Request.IsValid == 'True' && results.Items.TotalResults > 0)
                 {
-                  console.dir(results.Items.Item[0]);
-                  console.dir($this.Book);
+                  console.dir(results.Items.Item);
                   
-                  var i, item = results.Items.Item;
-                  for(i in item)
+                  var callback = function(item, index, array)
                   {
-                    var book = new $this.Book(item[i].ItemAttributes.EAN, item[i].ItemAttributes.EAN);
-                    book.author = item[i].ItemAttributes.Author;
-                    book.year = item[i].ItemAttributes.PublicationDate.substr(0,4);
-                    book.publication = item[i].ItemAttributes.PublicationDate;
+                    var book = new $this.Book(item.ItemAttributes.EAN, $this.name+':'+item.ItemAttributes.EAN);
+                    book.title = item.ItemAttributes.Title;
+                    book.author = item.ItemAttributes.Author;
+                    book.year = (item.ItemAttributes.PublicationDate)?item.ItemAttributes.PublicationDate.substr(0,4):'';
+                    book.publication = item.ItemAttributes.PublicationDate;
                     book.locations = [{
                       type: 'webStore',
                       name: 'Amazon',
-                      price: {
-                        amount: item[i].ItemAttributes.ListPrice.Amount,
-                        currency: item[i].ItemAttributes.ListPrice.CurrencyCode
+                      price: (item.ItemAttributes.ListPrice)?
+                        {
+                        amount: item.ItemAttributes.ListPrice.Amount,
+                        currency: item.ItemAttributes.ListPrice.CurrencyCode
+                        }:
+                        {
+                        amount: 0,
+                        currency: 'CAD'
                         },
-                      link: item[i].DetailPageURL}];
+                      link: item.DetailPageURL}];
                     $this.api.addBook(book);
                     search.addBook(book);
+                    console.log(' >>> find Amazon:'.green);
+                    console.dir(book);
+                  };
+                  
+                  if(results.Items.TotalResults == 1)
+                  {
+                    callback(results.Items.Item, 0, []);
                   }
+                  else
+                    results.Items.Item.forEach(callback);
                 }
                 search.end();
               }

@@ -31,40 +31,51 @@ finder.prototype = {
         },
         
     addBook: function(book){
-        if(typeof this.books[book.isbn] != 'Book')
+        if(!(this.books[book.isbn] instanceof finder.Book))
         {
             this.books[book.isbn] = book;
         }
         else
         {
-            var i;
-            for(i in book)
-            {
-                if(i == 'locations')
-                {
-                    this.books[book.isbn][i] = this.books[book.isbn][i].concat(book[i]);
-                }
-                else if(typeof this.books[book.isbn][i] == 'undefined')
-                    this.books[book.isbn][i] = book[i];
-            }
+          this.books[book.isbn].merge(book);
         }
     },
     addConnector: function(connector){
       var oConnect = new connector(this, finder.Book);
-      console.log(' >> init connector '.red+oConnect.name);
-      console.dir(finder.Book);
       this.connectors.push(oConnect);
     }
     
 };
 
 
-finder.Book = function(isbn, title)
+finder.Book = function(isbn, src)
 {
     this.isbn = isbn;
-    this.title = title;
+    Object.defineProperty(this, 'source', {value : src, enumerable:false });
+    this.sources = [src];
     this.locations = [];
     //Object.defineProperty(this, 'refCpt', {value : 0, enumerable:false });
+};
+
+finder.Book.prototype = {
+  merge:  function(book)
+  {
+    // don't merge the same book multiple times
+    if(!(book instanceof finder.Book) || this.sources.indexOf(book.source) != -1)
+      return;
+    
+    this.sources.push(book.source);
+    var i;
+    for(i in book)
+    {
+      if(i == 'locations')
+      {
+        this.locations = this.locations.concat(book.locations);
+      }
+      else if(typeof this[i] == 'undefined')
+        this[i] = book[i];
+    }
+  }
 };
 
 module.exports = finder;

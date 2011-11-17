@@ -22,11 +22,13 @@ Postgres.prototype = {
         console.log("Row count: %d",result.rows.length);
         
         for(var i=0; i < result.rows.length ; i++){
-          var book = new self.Book(result.rows[i].isbn, result.rows[i].title);
+          var book = new self.Book(result.rows[i].isbn, self.name+':'+result.rows[i].isbn);
+          book.title = result.rows[i].title;
           book.year = (result.rows[i].years != null) ? result.rows[i].years : "";
           book.author = (result.rows[i].author != null) ? result.rows[i].author : "";
           book.locations = [
           {
+            type: 'library',
             name: 'St-Albert',
             price: 0,
             distance: 5.7
@@ -35,6 +37,8 @@ Postgres.prototype = {
           
           self.api.addBook(book);
           search.addBook(book);
+          console.log(' >>> '.green);
+          console.dir(book);
         }
         search.end();
       });

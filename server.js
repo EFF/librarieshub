@@ -27,6 +27,8 @@ var api = new finder(Search);
 var connectors = fs.readdirSync(path.join(__dirname, 'connectors'));
 var connector, i;
 console.time('Loading ALL connectors : '+'COMPLETED '.green);
+console.dir(api);
+console.dir(finder.prototype);
 for(i in connectors)
 {
   lbl = 'Loading connector '+connectors[i].magenta;

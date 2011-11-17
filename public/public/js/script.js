@@ -31,7 +31,7 @@ $('#form_search').submit(function(e) {
   
 
   //var url = 'http://hackathonqc.librarieshub.com/api/search?s=' + keywords;
-  var url = 'http://book-finder-api.jeansebtr.cloud9ide.com/api/search?s=' + keywords;
+  var url = '/api/search?s=' + keywords;
   if(author) url += '&author=' + author;
   if(editor) url += '&editor=' + editor;
   if(isbn) url += '&isbn=' + isbn;
