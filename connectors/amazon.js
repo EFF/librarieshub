@@ -40,6 +40,8 @@ else
                   
                   var callback = function(item, index, array)
                   {
+                    if(typeof item.ItemAttributes.EAN == 'undefined')
+                      return;
                     var book = new $this.Book(item.ItemAttributes.EAN, $this.name+':'+item.ItemAttributes.EAN);
                     book.title = item.ItemAttributes.Title;
                     book.author = item.ItemAttributes.Author;
