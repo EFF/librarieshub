@@ -13,8 +13,6 @@ Postgres.prototype = {
 
     //error handling omitted
     pg.connect(conString, function(err, client) {
-      console.log(' >>> ERR'.red);
-      console.dir(err);
       var sql = "select * from documents d, authors a where (to_tsvector(isbn) || d.title_tsv || d.subject_tsv) @@ plainto_tsquery($1) and a.id = d.author_id";
       var params = [search.s];
       
@@ -37,8 +35,6 @@ Postgres.prototype = {
           
           self.api.addBook(book);
           search.addBook(book);
-          console.log(' >>> '.green);
-          console.dir(book);
         }
         search.end();
       });

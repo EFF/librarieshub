@@ -28,16 +28,13 @@ else
           }, function(error, results) {
               if(error)
               {
-                console.log('Error : '+error);
+                console.log('Error : '.red+error);
                 search.end();
               }
               else
               {
-                  console.dir(results.Items);
                 if(results.Items.Request.IsValid == 'True' && results.Items.TotalResults > 0)
                 {
-                  console.dir(results.Items.Item);
-                  
                   var callback = function(item, index, array)
                   {
                     if(typeof item.ItemAttributes.EAN == 'undefined')
@@ -62,8 +59,6 @@ else
                       link: item.DetailPageURL}];
                     $this.api.addBook(book);
                     search.addBook(book);
-                    console.log(' >>> find Amazon:'.green);
-                    console.dir(book);
                   };
                   
                   if(results.Items.TotalResults == 1)
@@ -76,17 +71,6 @@ else
                 search.end();
               }
           });
-          /*
-          // query == search.s
-          var book = new this.Book('9782070612369', "Harry Potter a L'ecole des sorciers");
-          book.author = "JOANNE KATHLEEN ROWLING";
-          book.year = "2007";
-          book.locations = [
-                  {name: 'Amazon', price: 5.50, distance: 5.7}
-              ];
-          
-          this.api.addBook(book);
-          search.addBook(book);*/
       }
   };
   

@@ -1,5 +1,6 @@
 var Search = function(s)
 {
+    console.log('New search : '.cyan+s);
     this.s = s;
     this.books = [];
 };
