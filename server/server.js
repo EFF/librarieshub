@@ -103,7 +103,7 @@ var server = http.createServer(function(req, res){
     // An API call would have returned here, serve static files
     if(u.pathname == '/')
         u.pathname = '/index.html';
-    var file, f = path.join(__dirname, 'public/public', u.pathname);
+    var file, f = path.join(__dirname, '../client', u.pathname);
     path.exists(f, function(exists){
         if(exists)
         {
