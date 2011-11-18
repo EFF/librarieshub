@@ -28,8 +28,6 @@ var api = new finder(Search);
 var connectors = fs.readdirSync(path.join(__dirname, 'connectors'));
 var connector, i;
 console.time('Loading ALL connectors : '+'COMPLETED '.green);
-console.dir(api);
-console.dir(finder.prototype);
 for(i in connectors)
 {
   lbl = 'Loading connector '+connectors[i].magenta;
@@ -120,7 +118,7 @@ var server = http.createServer(function(req, res){
         }
     });
 }).listen(Config.port, function(){
-    console.log('Starting Web server on port '+(process.env.PORT+'').cyan+' ... '+'DONE '.green);
+    console.log('Starting Web server on port '+(Config.port+'').cyan+' ... '+'DONE '.green);
   });
 
 // Cloud9ide seem to crash with long running debug..
