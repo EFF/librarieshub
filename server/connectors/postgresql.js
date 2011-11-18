@@ -20,7 +20,7 @@ Postgres.prototype = {
         console.log("Row count: %d",result.rows.length);
         
         for(var i=0; i < result.rows.length ; i++){
-          var book = new self.Book(result.rows[i].isbn, self.name+':'+result.rows[i].isbn);
+          var book = new self.Book(result.rows[i].ena, self.name+':'+result.rows[i].ena);
           book.title = result.rows[i].title;
           book.year = (result.rows[i].years != null) ? result.rows[i].years : "";
           book.author = (result.rows[i].author != null) ? result.rows[i].author : "";
