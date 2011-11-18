@@ -19,7 +19,7 @@ var http    = require('http'),
     fs      = require('fs'),
     mime    = require('mime');
 // change working dir to server dir
-process.chdir(__dirname);
+//process.chdir(__dirname);
 var finder  = require('./finder.js'),
     Search  = require('./search.js'),
     Config  = require('./settings.js');
