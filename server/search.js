@@ -8,11 +8,18 @@ var Search = function(s)
 Search.prototype = {
     addBook: function(book)
     {
-        this.books.push(this.api.books[book.isbn]);
+        if(this.books.indexOf(book.isbn) == -1)
+            this.books.push(book.isbn);
     },
     list: function()
     {
-        return this.books;
+        var i;
+        var books = [];
+        for(i = 0; i < this.books.length; i++)
+        {
+            books.push(this.api.books[this.books[i]]);
+        }
+        return books;
     },
     callback: function(n, callback)
     {
