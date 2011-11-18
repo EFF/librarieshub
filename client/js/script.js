@@ -98,6 +98,17 @@ $('#form_search').submit(function(e) {
                             }
                             providers['amazon'] = obj;
                           }
+                          else
+                          {
+                            var obj = {
+                              msg:tr('Best price on Amazon : N/A'),
+                              url: "http://www.amazon.com/"
+                            };
+                            if(location.link){
+                              obj.url = location.link; 
+                            }
+                            providers['amazon'] = obj;
+                          }
                           break;
                         case 'Google':
                           providers['google'].msg = tr('Available on Google Book');
@@ -141,7 +152,7 @@ $('#form_search').submit(function(e) {
             var providerText = false;
             if(providers[provider] && providers[provider].msg)
             {
-                providerText = providers[provider].msg;
+              providerText = providers[provider].msg;
             }
 			  		
             resultHTML += '<div class="span1">';
