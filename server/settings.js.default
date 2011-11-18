@@ -3,9 +3,9 @@ var Settings = {
     url   : 'postgres'
   },
   amazon: {
-    awsId     : '', // your AWS API key
-    awsSecret : '', // api secret
-    assocId   : ''  // associate tag
+    awsId     : 'AKIAJFVWYR7ADONXD22A', // your AWS API key
+    awsSecret : '9ol0wcwSS2j+DC5x2+/LOj4M1L5/Dzq1Z9vQAvVG', // api secret
+    assocId   : 'librhub-20'  // associate tag
   },
   headers: { // additionnal headers
     
