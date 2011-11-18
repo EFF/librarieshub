@@ -17,12 +17,11 @@ var http    = require('http'),
     querystring = require('querystring'),
     path    = require('path'),
     fs      = require('fs'),
-    mime    = require('mime');
-// change working dir to server dir
-//process.chdir(__dirname);
-var finder  = require('./finder.js'),
+    mime    = require('mime'),
+    finder  = require('./finder.js'),
     Search  = require('./search.js');
-var Config  = (prod)?require('./settings.prod.js'):require('./settings.js');
+process.env.CONFIG_FILE = (prod)?path.join(__dirname, 'settings.prod.js'):path.join(__dirname, 'settings.js');
+var Config  = require(process.env.CONFIG_FILE);
 console.timeEnd(lbl);
 
 var api = new finder(Search);
@@ -120,7 +119,7 @@ var server = http.createServer(function(req, res){
             res.end('NOT FOUND !');
         }
     });
-}).listen(process.env.PORT, function(){
+}).listen(Config.port, function(){
     console.log('Starting Web server on port '+(process.env.PORT+'').cyan+' ... '+'DONE '.green);
   });
 

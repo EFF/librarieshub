@@ -1,5 +1,5 @@
 var pg       = require('pg');
-var conString = require('../settings').pg.url;
+var conString = require(process.env.CONFIG_FILE).pg.url;
 
 var Postgres = function(api, Book) {
   this.name = 'Postgres';

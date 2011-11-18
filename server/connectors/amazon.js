@@ -1,4 +1,4 @@
-var settings = require('../settings.js').amazon;
+var settings = require(process.env.CONFIG_FILE).amazon;
 
 if(settings.assocId == '')// don't load Amazon dependencies if no settings
 {
