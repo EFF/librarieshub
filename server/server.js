@@ -17,8 +17,10 @@ var http    = require('http'),
     querystring = require('querystring'),
     path    = require('path'),
     fs      = require('fs'),
-    mime    = require('mime'),
-    finder  = require('./finder.js'),
+    mime    = require('mime');
+// change working dir to server dir
+process.chdir(__dirname);
+var finder  = require('./finder.js'),
     Search  = require('./search.js'),
     Config  = require('./settings.js');
 console.timeEnd(lbl);
