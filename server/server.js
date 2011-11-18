@@ -21,8 +21,8 @@ var http    = require('http'),
 // change working dir to server dir
 //process.chdir(__dirname);
 var finder  = require('./finder.js'),
-    Search  = require('./search.js'),
-    Config  = require('./settings.js');
+    Search  = require('./search.js');
+var Config  = (prod)?require('./settings.prod.js'):require('./settings.js');
 console.timeEnd(lbl);
 
 var api = new finder(Search);
