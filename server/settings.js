@@ -7,7 +7,7 @@ var Settings = {
     awsSecret : '9ol0wcwSS2j+DC5x2+/LOj4M1L5/Dzq1Z9vQAvVG', // api secret
     assocId   : 'librhub-20'  // associate tag
   },
-  port: process.env.PORT,
+  port: 1234,
   headers: { // additionnal headers
     
   }
