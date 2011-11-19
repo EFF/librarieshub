@@ -12,7 +12,7 @@
       <meta name="author" content="">
 
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
       <link rel="stylesheet" href="css/styles.css">
       <script src="js/libs/modernizr-2.0.6.min.js"></script>
    </head>
@@ -39,56 +39,75 @@
 
          <div id="results">
             <div id="results-list"></div>
-            <div id="results-loading">Chargement en cours...</div>
+            <div id="results-loading" class="loading">Chargement en cours...</div>
 
-            <div class="row result-row breadcrumb result-canevas">
+            <div class="row result-row breadcrumb result-canevas" isbn="ss">
                <div class="span16">
-                  <div class="row">
-                     <div class="span15">
-                        <h4 class="result-title">Titre</h4>
+                  <div class="row open-trigger">
+                     <div class="span11">
+                        <h4>
+                           <a class="result-title">Titre</a>
+                        </h4>
                      </div>
-                     <div class="span12" class="result-subtitle">Auteur, Année</div>
-                     <div class="availability"></div>
+                     <div class="span3 availability"></div>
+                  </div>
+                  <div class="row open-trigger">
+                     <div class="span11 result-subtitle">Auteur, Année</div>                     
                   </div>
                   <div class="row result-details">
-                                          
+                     <div class="span14">
+                        <ul class="tabs">
+                           <li class="active"><a class="ulink" href="#detail-resume">Résumé</a></li>
+                           <li><a class="ulink" href="#detail-library">Bibliothèques</a></li>
+                           <li><a class="ulink" href="#detail-buy">Amazon</a></li>
+                        </ul>
+                        <div class="pill-content">
+                           <div class="active uid" id="detail-resume">
+                              Cyprum itidem insulam procul a continenti discretam et portuosam inter municipia crebra urbes duae faciunt claram Salamis et Paphus, altera Iovis delubris altera Veneris templo insignis. tanta autem tamque multiplici fertilitate abundat rerum omnium eadem Cyprus ut nullius externi indigens adminiculi indigenis viribus a fundamento ipso carinae ad supremos usque carbasos aedificet onerariam navem omnibusque armamentis instructam mari committat.                              
+                           </div>
+                           <div class="uid" id="detail-library">X km</div>
+                           <div class="uid" id="detail-buy">X $</div>
+                        </div>
+                        <div id="detail-loading" class="loading">Chargement en cours...</div>
+                     </div>
                   </div>
                </div>
+               <div class="span12 left-arrow open-trigger"></div>
             </div>
+            <!-- Rajouter dans une page index
+            <footer>
+              <p>Développé par : <a href="http://twitter.com/#!/alain_gilbert">Alain Gilbert</a>, <a href="http://twitter.com/#!/jack_dbernier">Jacques-Olivier D. Bernier</a>, <a href="http://twitter.com/#!/j15e">Jean-Philippe Doyle</a>, <a href="http://twitter.com/#!/JeanSebTr">Jean-Sébastien Tremblay</a> et <a href="http://twitter.com/#!/roseberryv">Vincent Roseberry</a></p>
+            </footer>-->
+
          </div>
-         <!-- Rajouter dans une page index
-         <footer>
-           <p>Développé par : <a href="http://twitter.com/#!/alain_gilbert">Alain Gilbert</a>, <a href="http://twitter.com/#!/jack_dbernier">Jacques-Olivier D. Bernier</a>, <a href="http://twitter.com/#!/j15e">Jean-Philippe Doyle</a>, <a href="http://twitter.com/#!/JeanSebTr">Jean-Sébastien Tremblay</a> et <a href="http://twitter.com/#!/roseberryv">Vincent Roseberry</a></p>
-         </footer>-->
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+         <script defer src="js/libs/jquery.cookie.js"></script>
+         <script defer src="js/libs/jquery.tr.min.js"></script>
+         <script defer src="js/i18n/dictionnary.js"></script>
+         <script defer src="js/libs/bootstrap-twipsy.js"></script>
+         <script defer src="js/libs/bootstrap-tabs.js"></script>
+         <script defer src="js/script.js"></script>
 
-      </div>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-      <script defer src="js/libs/jquery.cookie.js"></script>
-      <script defer src="js/libs/jquery.tr.min.js"></script>
-      <script defer src="js/i18n/dictionnary.js"></script>
-      <script defer src="js/libs/bootstrap-twipsy.js"></script>
-      <script defer src="js/script.js"></script>
+         <!--[if lt IE 7 ]>
+           <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+           <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+         <![endif]-->
 
-      <!--[if lt IE 7 ]>
-        <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-        <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-      <![endif]-->
-
-      <!--<script type="text/javascript">
-
-         var _gaq = _gaq || [];
-         _gaq.push(['_setAccount', 'UA-27135996-2']);
-         _gaq.push(['_trackPageview']);
-
-         (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
-               'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; 
-            s.parentNode.insertBefore(ga, s);
-         })();
-      </script>-->
+         <!--<script type="text/javascript">
+   
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-27135996-2']);
+            _gaq.push(['_trackPageview']);
+   
+            (function() {
+               var ga = document.createElement('script'); ga.type = 'text/javascript';
+               ga.async = true;
+               ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
+                  'http://www') + '.google-analytics.com/ga.js';
+               var s = document.getElementsByTagName('script')[0]; 
+               s.parentNode.insertBefore(ga, s);
+            })();
+         </script>-->
 
    </body>
 </html>

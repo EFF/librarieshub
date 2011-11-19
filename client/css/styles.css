@@ -29,9 +29,9 @@
       width: 360px;
       height: 30px; }
 
-#results #result-canevas {
+#results .result-canevas {
   display: none; }
-#results #results-loading {
+#results .loading {
   display: none;
   font-size: 16px;
   line-height: 100px;
@@ -65,6 +65,10 @@
     background-image: url(../img/provider/google.png); }
   #results .result-row .library {
     background-image: url(../img/provider/library.png); }
-
-#results-title {
-  font-size: 18px; }
+  #results .result-row .result-details {
+    display: none;
+    margin-top: 15px; }
+  #results .result-row .open-trigger {
+    cursor: pointer; }
+#results .result-row.open {
+  background: url(../img/line-arrow-open.png) no-repeat bottom right; }

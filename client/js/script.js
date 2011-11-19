@@ -25,14 +25,266 @@ $(function()
 });
 
 //------------------------------------------------
+// ResultRow
+//------------------------------------------------
+
+function ResultRow(d)
+{
+   this.data = d;
+   this.row = this.clone();
+   this.panel = new PanelDetails(this.row, d);
+   
+   this.row.removeClass("result-canevas");
+      
+   this.row.attr('isbn', this.data.isbn);
+   this.row.find(".result-title").html(this.data.title);
+   this.row.find(".result-subtitle").html(this.data.author + ' ' + this.data.year);
+   
+   this.showProvider();
+}
+
+ResultRow.prototype = {
+   clone: function()
+   {
+      return $(".result-canevas").first().clone();
+   },   
+   insert: function(parent)
+   {
+      if(this.row)
+      {
+         this.panel.update();
+         parent.append(this.row);
+         this.bind();
+      }      
+   },
+   bind: function()
+   {
+      var $this = this;
+      
+      // Bind twipsy hover event
+      this.row.find('.provider-icon').twipsy();
+      
+      // Show details
+      this.row.find('.open-trigger').click(function()
+      {
+         $this.panel.togglePanel();
+      });
+
+      // Bind tabs
+      this.row.find('.tabs').tabs();
+   },
+   showProvider: function()
+   {
+      var providers = {
+         'google':null, 
+         'amazon':null, 
+         'library':null
+      };
+			  
+      if(this.data)
+      {
+         var location;
+         for(location in this.data.locations)
+         {
+            location = this.data.locations[location];
+            //console.log(location);
+              
+            if(location.type)
+            {
+               switch(location.type)
+               {
+                  case 'webStore':
+                     if(location.name)
+                     {
+                        switch(location.name)
+                        {
+                           case 'Amazon':
+                              if(location.price && location.price.amount) 
+                              {
+                                 var amount = location.price.amount.substr(0, location.price.amount.length - 2) + '.' + location.price.amount.substr(location.price.amount.length - 2, 2);
+                                 var obj = {
+                                    msg:tr('Best price on Amazon : $&1', Number(amount).toFixed(2)),
+                                    url: "http://www.amazon.com/"
+                                 };
+                                 if(location.link){
+                                    obj.url = location.link; 
+                                 }
+                                 providers['amazon'] = obj;
+                              }
+                              else
+                              {
+                                 var obj = {
+                                    msg:tr('Best price on Amazon : N/A'),
+                                    url: "http://www.amazon.com/"
+                                 };
+                                 if(location.link){
+                                    obj.url = location.link; 
+                                 }
+                                 providers['amazon'] = obj;
+                              }
+                              break;
+                           case 'Google':
+                              providers['google'].msg = tr('Available on Google Book');
+                              break;
+                        }
+                     }
+                     break;
+                    
+                  case 'library':
+                     if(location.name && location.distance)
+                     {
+                        var obj = {
+                           msg:tr('Available at &1 library (&2 km)', location.name, location.distance)
+                        };
+                        providers["library"] = obj;
+                     }
+                     else if(location.name)
+                     {
+                        var obj = {
+                           msg:tr('Available at &1 library', location.name)
+                        };
+                        providers["library"] = obj;
+                     }
+                     break;
+               }
+            }
+         }
+      }
+      
+      var providerHTML = "";
+      var provider;     
+      for(provider in providers)
+      {            
+         var providerText = false;
+         if(providers[provider] && providers[provider].msg)
+         {
+            providerText = providers[provider].msg;
+         }
+			  		
+         providerHTML += '<div class="span1">';
+		
+         // Active provider
+         if(providerText)
+         {	
+            if(providers[provider].url) providerHTML += '<a target="_blank" href='+providers[provider].url+'>';
+            providerHTML += '<span class="provider-icon '+provider+' active" title="'+providerText+'"></span>';	
+            if(providers[provider].url) providerHTML += '</a>';				  	
+         }
+         // Deactivate provider
+         else
+         {
+            providerHTML += '<span class="provider-icon '+provider+'"></span>';			  	
+         }
+			  		
+         providerHTML += '</div>';        
+      }
+      this.row.find('.availability').html(providerHTML);
+   }
+};
+
+//------------------------------------------------
+// ResultRow Panel details
+//------------------------------------------------
+
+function PanelDetails(row, data)
+{
+   this.row = row;
+   this.data = data;
+   this.panel = row.find('.result-details');
+}
+
+PanelDetails.prototype = {
+   update: function()
+   {
+      this.uniquingTabs(this.row);
+   },  
+   togglePanel: function()
+   {
+      // Show
+      if(!this.panel.is(':visible'))
+      {
+         this.openPanel();
+      }
+      else
+      {
+         this.closePanel();
+      }
+   },
+   openPanel: function()
+   {
+      this.panel.slideDown('fast');      
+      this.row.addClass('open');
+
+      // If data not loaded
+      if(!this.panel.attr('loaded'))
+      {
+         // Start loading
+         var $loading = $("#detail-loading");
+         $loading.show();
+
+         // Mark as loaded 
+         this.panel.attr('loaded', true);
+
+         // Load specific data         
+         var url = "http://www.librarieshub.com/api/get?isbn=" + this.row.attr('isbn');
+
+         $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: "json",    
+            success: function(data, status)
+            {
+               $loading.hide();
+
+               if(data && data.success && data.book)
+               {
+                  //console.log(data.book);
+               }
+               else
+               {
+            // TODO: Unable to retrieve data
+            }
+            },
+            error: function(XHR, textStatus, errorThrown)
+            {
+               $loading.hide();
+            // TODO: Error message
+            }
+         });
+      } 
+   },
+   closePanel: function()
+   {
+      this.panel.slideUp('fast');      
+      this.row.removeClass('open');
+   }, 
+   uniquingTabs: function(row)
+   {
+      var data = this.data;
+      // Unique id for tabs
+      this.row.find('.uid').each(function()
+      {                  
+         $(this).attr('id', data.isbn + '-' + $(this).attr('id'));
+      });
+       
+      // Change the link
+      this.row.find('.ulink').each(function()
+      {                  
+         var href = $(this).attr('href');
+         $(this).attr('href', href.replace("#", "#"+ data.isbn +"-"));
+      });
+   }    
+};
+//------------------------------------------------
 // Search form
 //------------------------------------------------
+
 $('#form_search').submit(function(e)
 {
    var $resultsList = $('div#results-list');
    var $resultsLoading = $("#results-loading");
    
-   var url = '/api/search?s=' + $("#keywords").val();
+   var url = 'http://www.librarieshub.com/api/search?s=' + $("#keywords").val();
   
    // Geolocalisation
    if($.cookie('coords-latitude')) url += '&lat=' + $.cookie('coords-latitude');
@@ -43,7 +295,7 @@ $('#form_search').submit(function(e)
    $resultsList.html("");
   
    // TODO: Remove
-   url = 'dummy-search.json';
+   //url = 'dummy-search.json';
   
    $.ajax({
       type: 'GET',
@@ -55,8 +307,7 @@ $('#form_search').submit(function(e)
          $resultsLoading.hide();
 	  
          if(data && data.success && data.results)
-         {
-                       
+         {                       
             var item;
             
             // We emptied the list
@@ -66,133 +317,15 @@ $('#form_search').submit(function(e)
             {
                var result = data.results[item];               
 			  
-               var providers = {
-                  'google':null, 
-                  'amazon':null, 
-                  'library':null
-               };
-			  
-               if(result.locations)
-               {
-                  var location;
-                  for(location in result.locations)
-                  {
-                     location = result.locations[location];
-              
-                     if(location.type)
-                     {
-                        switch(location.type)
-                        {
-                           case 'webStore':
-                              if(location.name)
-                              {
-                                 switch(location.name)
-                                 {
-                                    case 'Amazon':
-                                       console.dir(result);
-                                       if(location.price && location.price.amount) 
-                                       {
-                                          var amount = location.price.amount.substr(0, location.price.amount.length - 2) + '.' + location.price.amount.substr(location.price.amount.length - 2, 2);
-                                          var obj = {
-                                             msg:tr('Best price on Amazon : $&1', Number(amount).toFixed(2)),
-                                             url: "http://www.amazon.com/"
-                                          };
-                                          if(location.link){
-                                             obj.url = location.link; 
-                                          }
-                                          providers['amazon'] = obj;
-                                       }
-                                       else
-                                       {
-                                          var obj = {
-                                             msg:tr('Best price on Amazon : N/A'),
-                                             url: "http://www.amazon.com/"
-                                          };
-                                          if(location.link){
-                                             obj.url = location.link; 
-                                          }
-                                          providers['amazon'] = obj;
-                                       }
-                                       break;
-                                    case 'Google':
-                                       providers['google'].msg = tr('Available on Google Book');
-                                       break;
-                                 }
-                              }
-                              break;
-                    
-                           case 'library':
-                              if(location.name && location.distance)
-                              {
-                                 var obj = {
-                                    msg:tr('Available at &1 library (&2 km)', location.name, location.distance)
-                                 };
-                                 providers["library"] = obj;
-                              }
-                              else if(location.name)
-                              {
-                                 var obj = {
-                                    msg:tr('Available at &1 library', location.name)
-                                 };
-                                 providers["library"] = obj;
-                              }
-                              break;
-                        }
-                     }
-                  }
-               }
-			  
-               // Result line
-               var $result = $(".result-canevas").first();
-               console.log($result.size());
-          
-               $result.removeClass(".result-canevas");
-               $result.attr('isbn', result.isbn);
-               $result.find(".result-title").html(result.title);
-               $result.find(".result-subtitle").html(result.author + ' ' + result.year);
-				  
-               var provider;          
-               for(provider in providers)
-               {
-                  var providerHTML = "";
-             
-                  var providerText = false;
-                  if(providers[provider] && providers[provider].msg)
-                  {
-                     providerText = providers[provider].msg;
-                  }
-			  		
-                  providerHTML += '<div class="span1">';
-		
-                  // Active provider
-                  if(providerText)
-                  {	
-                     if(providers[provider].url) providerHTML += '<a target="_blank" href='+providers[provider].url+'>';
-                     providerHTML += '<span class="provider-icon '+provider+' active" title="'+providerText+'"></span>';	
-                     if(providers[provider].url) providerHTML += '</a>';				  	
-                  }
-                  // Deactivate provider
-                  else
-                  {
-                     providerHTML += '<span class="provider-icon '+provider+'"></span>';			  	
-                  }
-			  		
-                  providerHTML += '</div>';  
-           
-                  $result.find('.availability').html(providerHTML);
-               }
-				 
-               // Add to the result list
-               $resultsList.append($result);
+               var row = new ResultRow(result);
+               
+               row.insert($resultsList)
             }
 		  
             if($resultsList.size() == 0)
             {
                $resultsList.html("<div class='alert-message warning'>" + tr('No result found') + "</div>");
-            }
-		  
-            // Bind twipsy hover event
-            $('.provider-icon', $("div#results")).twipsy();
+            }           
          }
          else
          {
