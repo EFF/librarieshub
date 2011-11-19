@@ -3,77 +3,92 @@
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>Trouver un livre</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+      <title>LibrairiesHub: Trouver un livre</title>
+      <meta name="description" content="">
+      <meta name="author" content="">
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="js/libs/modernizr-2.0.6.min.js"></script>
-</head>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+      <link rel="stylesheet" href="css/styles.css">
+      <script src="js/libs/modernizr-2.0.6.min.js"></script>
+   </head>
 
-<body>
-<div class="container">
-  <div class="page-header">
-    <img src="img/header.png" alt="Hacketon" id="hacketon" />
-    <h1>Trouver un livre</h1>
-  </div>
-  <form id="form_search" action="/">
-  <div class="row" id="search">
-    <div class="span9">
-      <div class="main-search">
-        <input type="text" name="keywords" id="keywords" class="main-field" />
-        <input type="submit" name="search" id="search" class="btn primary" value="Lancer"/>
-      </div>      
-    </div>
-    <div class="span7 translate" id="about">Find a book ..... Amazon , Google</div>
-  </div>
-  </form>
-  
-  <hr />
-  <!--<h2 id="results-title">5 résultats</h2>-->
-  <div id="results-loading">Chargement en cours...</div>
-  <div id="results"></div>
-  <footer>
-    <p>Projet réalisé durant le Hackathon Québec 2011 organisé par <a href="http://twitter.com/#!/capitaleouverte">Capitale Ouverte</a></p>
-    <p>Développé par : <a href="http://twitter.com/#!/alain_gilbert">Alain Gilbert</a>, <a href="http://twitter.com/#!/jack_dbernier">Jacques-Olivier D. Bernier</a>, <a href="http://twitter.com/#!/j15e">Jean-Philippe Doyle</a>, <a href="http://twitter.com/#!/JeanSebTr">Jean-Sébastien Tremblay</a> et <a href="http://twitter.com/#!/roseberryv">Vincent Roseberry</a></p>
-  </footer>
+   <body>
+      <div class="container">
+         <div class="page-header" id="header">
+            <img src="img/logo.png" alt="LibrariesHub" />
+            <h1>Trouver un livre</h1>
+         </div>
+         <form id="form_search" action="/">
+            <div class="row" id="search">
+               <div class="span9">
+                  <div class="main-search">
+                     <input type="text" name="keywords" id="keywords" class="main-field" />
+                     <input type="submit" name="search" id="search" class="btn primary" value="Lancer"/>
+                  </div>      
+               </div>
+               <div class="span7 translate" id="about">Find a book ..... Amazon , Google</div>
+            </div>
+         </form>
 
-</div>
+         <hr />
 
+         <div id="results">
+            <div id="results-list"></div>
+            <div id="results-loading">Chargement en cours...</div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-<script defer src="js/libs/jquery.cookie.js"></script>
-<script defer src="js/libs/jquery.tr.min.js"></script>
-<script defer src="js/i18n/dictionnary.js"></script>
- <script defer src="js/libs/bootstrap-twipsy.js"></script>
- <script defer src="js/script.js"></script>
+            <div class="row result-row breadcrumb result-canevas">
+               <div class="span16">
+                  <div class="row">
+                     <div class="span15">
+                        <h4 class="result-title">Titre</h4>
+                     </div>
+                     <div class="span12" class="result-subtitle">Auteur, Année</div>
+                     <div class="availability"></div>
+                  </div>
+                  <div class="row result-details">
+                                          
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Rajouter dans une page index
+         <footer>
+           <p>Développé par : <a href="http://twitter.com/#!/alain_gilbert">Alain Gilbert</a>, <a href="http://twitter.com/#!/jack_dbernier">Jacques-Olivier D. Bernier</a>, <a href="http://twitter.com/#!/j15e">Jean-Philippe Doyle</a>, <a href="http://twitter.com/#!/JeanSebTr">Jean-Sébastien Tremblay</a> et <a href="http://twitter.com/#!/roseberryv">Vincent Roseberry</a></p>
+         </footer>-->
 
-<!--[if lt IE 7 ]>
-  <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-  <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-<![endif]-->
+      </div>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+      <script defer src="js/libs/jquery.cookie.js"></script>
+      <script defer src="js/libs/jquery.tr.min.js"></script>
+      <script defer src="js/i18n/dictionnary.js"></script>
+      <script defer src="js/libs/bootstrap-twipsy.js"></script>
+      <script defer src="js/script.js"></script>
 
-<script type="text/javascript">
+      <!--[if lt IE 7 ]>
+        <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+        <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+      <![endif]-->
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27135996-2']);
-  _gaq.push(['_trackPageview']);
+      <!--<script type="text/javascript">
 
-  (function() {
-     var ga = document.createElement('script'); ga.type = 'text/javascript';
-     ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
-                'http://www') + '.google-analytics.com/ga.js';
-     var s = document.getElementsByTagName('script')[0]; 
-         s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-27135996-2']);
+         _gaq.push(['_trackPageview']);
 
-</body>
+         (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
+               'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; 
+            s.parentNode.insertBefore(ga, s);
+         })();
+      </script>-->
+
+   </body>
 </html>
