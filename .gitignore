@@ -1,5 +1,5 @@
 node_modules/
 *.swp
-settings.js
+server/settings.js
 startup.bat
 .sass-cache/

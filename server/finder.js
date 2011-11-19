@@ -3,10 +3,11 @@ var finder = function(Search){
     this.Search = Search;
     this.books = {};
     this.connectors = [];
+    this.searchs = {};
 };
 
 finder.prototype = {
-    search: function(s, callback){
+    search: function(s, callback, start, stop){
             var i;
             s.api = this;
             s.callback(this.connectors.length, callback);
