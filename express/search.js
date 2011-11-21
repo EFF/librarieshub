@@ -1,6 +1,6 @@
 var Search = function(s)
 {
-    console.log('New search : '.cyan+s);
+    console.log('New search : %s'.cyan, s);
     this.s = s;
     this.books = [];
 };
@@ -29,9 +29,12 @@ Search.prototype = {
     end: function()
     {
         this.nbConnector--;
-        console.log('Search complete ? '+this.nbConnector);
-        if(this.nbConnector == 0)
-            this.callback();
+        console.log('remaining search %s', this.nbConnector);
+
+        	if(this.nbConnector == 0){
+				this.callback();
+			}
+            
     }
     
 };

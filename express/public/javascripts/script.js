@@ -215,7 +215,7 @@ PanelDetails.prototype = {
          this.panel.attr('loaded', true);
 
          // Load specific data         
-         var url = "http://www.librarieshub.com/api/get?isbn=" + this.row.attr('isbn');
+         var url = "/api/get?isbn=" + this.row.attr('isbn');
 
          $.ajax({
             type: 'GET',
@@ -273,7 +273,7 @@ $('#form_search').submit(function(e)
    var $resultsList = $('div#results-list');
    var $resultsLoading = $("#results-loading");
    
-   var url = 'http://www.librarieshub.com/api/search?s=' + $("#keywords").val();
+   var url = '/api/search?s=' + $("#keywords").val();
   
    // Geolocalisation
    if($.cookie('coords-latitude')) url += '&lat=' + $.cookie('coords-latitude');

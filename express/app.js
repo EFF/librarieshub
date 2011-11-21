@@ -9,6 +9,10 @@ console.log('Starting %s Application on Node.js %s', 'Libraries Hub'.green.under
 var express = require('express');
 var app = express.createServer();
 
+// ----------------------------------------------------------------------------
+//	Loading libraries
+//-----------------------------------------------------------------------------
+
 var lbl = 'Loading libs';
 console.time(lbl);
 var i18n    = require("i18n");
@@ -17,13 +21,16 @@ var fs      = require('fs');
 var finder  = require('./finder.js');
 var Search  = require('./search.js');
 
-var prod = (process.env.NODE_ENV == 'production');
-
-//TODO intŽgrer les settings dans les configs de express
-process.env.CONFIG_FILE = (prod)?path.join(__dirname, 'settings.prod.js'):path.join(__dirname, 'settings.js');
-
 console.timeEnd(lbl);
 
+//Loading configurations
+require('./configurations.js')(app, express, i18n);
+
+
+
+// ----------------------------------------------------------------------------
+//	Loading connectors
+//-----------------------------------------------------------------------------
 
 
 var api = new finder(Search);
@@ -45,28 +52,19 @@ for(i in connectors)
   else
   {
     console.timeEnd(lbl);
-    console.log('   ...   '+connectors[i].magenta+' connector '+'disabled!'.cyan);
+    console.log('   ...   %s connector %s', connectors[i].magenta, ' disabled!'.cyan);
   }
 }
 console.timeEnd(c);
 
-
-
-// register helpers for use in templates
-app.helpers({
-  __: i18n.__
-});
-
-// or even a global for use in your app.js
-var __= i18n.__;
-
-require('./configurations.js')(app, express, i18n);
+// ----------------------------------------------------------------------------
+//	Routing
+//-----------------------------------------------------------------------------
+//Routing client
 require('./routes.js')(app, express, i18n);
 
 
-
-
-
+//Routing API
 app.get('/api/search', function(req, res){
   if(!req.query["s"]){
     res.send(new Error('Parameter s must be set'));
@@ -112,19 +110,12 @@ app.get('/api/get', function(req, res){
 
 
 
-
-
-
-
-
-
 app.listen(process.env.PORT);
 console.log("Express server listening on port %s in %s mode".green, (app.address().port + "").underline, app.settings.env.underline);
 
-process.on('exit', function () {
-  console.log(' >>> Server shutting down... ');
-});
 
+//Heartbeat
 setInterval(function(){
   console.log('heartbeat'.green);
 }, 1000 * 60);
+

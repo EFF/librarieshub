@@ -1,13 +1,13 @@
 {
-	"index_title": "index_title",
-	"about": "about",
-	"loading": "loading",
-	"title": "title",
-	"Hello": "Hello",
-	"author": "author",
-	"year": "year",
-	"summary": "summary",
-	"library": "library",
+	"index_title": "Trouver un livre",
+	"about": "Utilisez le nous pour trouver un livre dans une des bibliothèques du Québec ou chez sur Amazon",
+	"loading": "Chargement...",
+	"title": "Libraries Hub - La où les livres se rencontrent",
+	"Hello": "Bonjour",
+	"author": "Auteur",
+	"year": "Année",
+	"summary": "Résumé",
+	"library": "Bibliothèque",
 	"Amazon": "Amazon",
-	"search": "search"
+	"search": "Lancer"
 }
