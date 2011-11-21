@@ -1,6 +1,7 @@
 var Settings = {
   pg:   {
-    url   : 'tcp://postgres:postgres@ec2-107-22-160-15.compute-1.amazonaws.com/librarieshub_pg'
+    //url   : 'tcp://postgres:postgres@ec2-107-22-160-15.compute-1.amazonaws.com/librarieshub_pg'
+    url   : 'tcp://postgres:postgres@localhost/bookfinder'
   },
   amazon: {
     awsId     : 'AKIAJFVWYR7ADONXD22A', // your AWS API key
