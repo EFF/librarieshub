@@ -5,7 +5,8 @@ var Settings = {
   amazon: {
     awsId     : 'AKIAJFVWYR7ADONXD22A', // your AWS API key
     awsSecret : '9ol0wcwSS2j+DC5x2+/LOj4M1L5/Dzq1Z9vQAvVG', // api secret
-    assocId   : 'librhub-20'  // associate tag
+    //assocId   : 'librhub-20'  // associate taglibrhub06-20
+	assocId   : 'librhub06-20'  // associate tag for canada
   },
   port: process.env.PORT,
   headers: { // additionnal headers
