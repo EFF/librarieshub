@@ -17,23 +17,26 @@ Postgres.prototype = {
       pg.connect(conString, function(err,client){
         var sql = "select * from libraries l inner join libraries_documents ld on l.id = ld.library_id where ld.document_id in ("+ids.join()+")";
         client.query(sql, function(err, results){
+          
           if(err){
             console.log("ERROR".red);
             console.dir(err);
           }
           else{
             for(book in books){
-              books[book].locations = [];
               for(var i=0; i < results.rows.length ; i++){
-                books[book].locations.push({
-                  type: 'library', 
-                  name: results.rows[i].name,
-                  distance: 5.7, 
-                  price: 0
-                });
-                
+                if(i==0)
+                  console.dir(books[book]);
+                if(books[book].id == results.rows[i].document_id){
+                  books[book].locations.push({
+                    type: 'library', 
+                    name: results.rows[i].name,
+                    distance: 5.7, 
+                    price: 0
+                  });
+                }
               }
-        
+              console.dir(books[book].locations);
         
               self.api.addBook(books[book]);
               search.addBook(books[book]);
@@ -60,10 +63,19 @@ Postgres.prototype = {
           var book = new self.Book(result.rows[i].ena, self.name+':'+result.rows[i].ena);
           
           ids.push(result.rows[i].id);
-          
+          book.id = result.rows[i].id;
           book.title = result.rows[i].title;
           book.year = (result.rows[i].years != null) ? result.rows[i].years : "";
           book.author = (result.rows[i].author != null) ? result.rows[i].author : "";
+          book.locations = [];
+          
+          //TODO ne plus hardcoder cela lorsque nous aurons reglŽ le problme avec MTL
+          book.locations.push({
+            type: 'library', 
+            name: "Inconnu - merci MTL!",
+            distance: 1000, 
+            price: 0
+          });
           
           books.push(book);
         }
