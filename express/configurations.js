@@ -12,6 +12,7 @@ module.exports = function(app, express, i18n){
 	app.use("/stylesheets", express.static(__dirname + '/public/stylesheets'));
 	app.use("/images", express.static(__dirname + '/public/images'));
 	app.use("/javascripts", express.static(__dirname + '/public/javascripts'));
+        app.set('views', __dirname + '/views');
 	
 	// register helpers for use in templates
 	app.helpers({
