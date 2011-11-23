@@ -25,8 +25,6 @@ Postgres.prototype = {
           else{
             for(book in books){
               for(var i=0; i < results.rows.length ; i++){
-                if(i==0)
-                  console.dir(books[book]);
                 if(books[book].id == results.rows[i].document_id){
                   books[book].locations.push({
                     type: 'library', 
@@ -36,8 +34,6 @@ Postgres.prototype = {
                   });
                 }
               }
-              console.dir(books[book].locations);
-        
               self.api.addBook(books[book]);
               search.addBook(books[book]);
             }
@@ -72,7 +68,7 @@ Postgres.prototype = {
           //TODO ne plus hardcoder cela lorsque nous aurons reglŽ le problme avec MTL
           book.locations.push({
             type: 'library', 
-            name: "Inconnu - merci MTL!",
+            name: "Inconnu",
             distance: 1000, 
             price: 0
           });

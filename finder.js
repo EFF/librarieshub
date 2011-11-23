@@ -49,12 +49,13 @@ finder.prototype = {
 };
 
 
-finder.Book = function(isbn, src)
+finder.Book = function(ena, src)
 {
-    this.isbn = isbn;
+    this.isbn = '';
     Object.defineProperty(this, 'source', {value : src, enumerable:false });
     this.sources = [src];
     this.locations = [];
+    this.ena = ena;
     //Object.defineProperty(this, 'refCpt', {value : 0, enumerable:false });
 };
 

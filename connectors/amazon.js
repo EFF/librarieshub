@@ -40,10 +40,15 @@ else
                     if(typeof item.ItemAttributes.EAN == 'undefined')
                       return;
                     var book = new $this.Book(item.ItemAttributes.EAN, $this.name+':'+item.ItemAttributes.EAN);
+                    book.isbn = item.ItemAttributes.ISBN
                     book.title = item.ItemAttributes.Title;
                     book.author = item.ItemAttributes.Author;
                     book.year = (item.ItemAttributes.PublicationDate)?item.ItemAttributes.PublicationDate.substr(0,4):'';
                     book.publication = item.ItemAttributes.PublicationDate;
+                    
+                    //TODO mettre quelque chose d'autre
+                    book.description = "N/D";
+                    
                     book.locations = [{
                       type: 'webStore',
                       name: 'Amazon',

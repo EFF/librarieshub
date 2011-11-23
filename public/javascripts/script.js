@@ -25,7 +25,11 @@ function ResultRow(d)
    
    this.row.removeClass("result-canevas");
       
-   this.row.attr('isbn', this.data.isbn);
+   this.row.attr('ena', this.data.ena);
+   
+   //TODO utiliser le 'attribut ena'
+   //this.row.attr('isbn', this.data.isbn);
+   this.row.attr('isbn', this.data.ena);
    this.row.find(".result-title").html(this.data.title);
    this.row.find(".result-subtitle").html(this.data.author + ' ' + this.data.year);
    
@@ -201,6 +205,7 @@ PanelDetails.prototype = {
    },
    openPanel: function()
    {
+      var self = this;
       this.panel.slideDown('fast');      
       this.row.addClass('open');
 
@@ -227,7 +232,9 @@ PanelDetails.prototype = {
 
                if(data && data.success && data.book)
                {
-                  //console.log(data.book);
+                 console.dir(data.book);
+                 console.log(data.book.description);
+                 self.row.find('.detail-resume').html(data.book.description);
                }
                else
                {
@@ -282,9 +289,6 @@ $('#form_search').submit(function(e)
    // Show loading
    $resultsLoading.show();
    $resultsList.html("");
-  
-   // TODO: Remove
-   //url = 'dummy-search.json';
   
    $.ajax({
       type: 'GET',

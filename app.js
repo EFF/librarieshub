@@ -33,7 +33,7 @@ require('./configurations.js')(app, express, i18n);
 //-----------------------------------------------------------------------------
 
 
-var api = new finder(Search);
+app.api = new finder(Search);
 var connectors = fs.readdirSync(path.join(__dirname, 'connectors'));
 var connector, i;
 
@@ -46,7 +46,7 @@ for(i in connectors)
   connector = require(path.join(__dirname, 'connectors', connectors[i]));
   if(typeof connector == 'function')
   {
-    api.addConnector(connector);
+    app.api.addConnector(connector);
     console.timeEnd(lbl);
   }
   else
@@ -61,52 +61,7 @@ console.timeEnd(c);
 //	Routing
 //-----------------------------------------------------------------------------
 //Routing client
-require('./routes.js')(app, express, i18n);
-
-
-//Routing API
-app.get('/api/search', function(req, res){
-  if(!req.query["s"]){
-    res.send(new Error('Parameter s must be set'));
-  }
-  else{
-    var oSearch = new Search(req.query["s"]);
-    return api.search(oSearch, function(err)
-    {
-      var list = oSearch.list();
-      res.send(JSON.stringify({
-        success: true, 
-        total: list.length, 
-        results: list
-      }));
-    });
-  }
-});
-
-app.get('/api/get', function(req, res){
-  if(!req.query["isbn"]){
-    res.send(new Error('Parameter isbn must be set'));
-  }
-  else{
-    return api.get(req.query["isbn"], function(err, book){
-      if(err)
-      {
-        res.send(JSON.stringify({
-          success: false, 
-          msg: "Can't find book!"
-        }));
-      }
-      else
-      {
-        res.send(JSON.stringify({
-          success: true, 
-          book: book
-        }));
-      }
-    });
-  }
-});
-
+require('./routes/index.js')(app, i18n);
 
 
 
