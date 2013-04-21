@@ -1,13 +1,15 @@
 {
-  "name": "bookfinder-api",
+  "name": "LibrariesHub",
   "version": "0.1.0",
   "dependencies": {
-    "pg": "0.6.6",
-    "apac": "0.0.4",
-    "mime": "1.2.4",
-	"express": "2.5.0",
-	"jade": ">= 0.0.1",
-	"i18n": "0.3.0",
-	"ejs" : "0.4.3"
-  }
+    "express": "3.0.x",
+    "jade": "~0.28.2",
+    "async": "0.2.x",
+    "stylus": "0.32.x",
+    "coffee-script": "1.4.x"
+  },
+  "scripts":{
+    "start": "foreman start"
+  },
+  "main": "server/app.js"
 }

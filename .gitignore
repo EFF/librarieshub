@@ -1,6 +1,2 @@
 node_modules/
-*.swp
-server/settings.js
-start-server.bat
-watch-scss.bat
-.sass-cache/
+public/stylesheets/style.css
