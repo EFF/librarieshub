@@ -3,13 +3,13 @@ openifyItConnector = require '../connectors/openify'
 class SearchInteractor
     constructor: ()->
 
-    search: (query, callback) =>
+    search: (options, callback) =>
         functions = [
-            openifyItConnector.search.bind openifyItConnector, query
+            openifyItConnector.search.bind openifyItConnector, options
         ]
         async.parallel functions, @_mergeResults.bind(@, callback)
     
     _mergeResults: (callback, err, results) =>
-        callback null, results[0]
+        callback null, results[0].data
 
 module.exports = new SearchInteractor()

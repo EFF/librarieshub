@@ -18,6 +18,7 @@ app.configure(function(){
     app.disable('x-powered-by');
     app.set('view engine', 'jade');
     app.set('views', __dirname + '/views');
+    app.use(express.logger('dev'));
     app.use(app.router);
     app.use(stylus.middleware({src: path.join(__dirname, '../public'), compile: compileStylus}));
     app.use(express.static(path.join(__dirname, '../public')));
@@ -28,7 +29,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/api/search', function(req, res){
-    searchInteractor.search(req.query.q, function(err, results){
+    searchInteractor.search(req.query, function(err, results){
         if(err){
             res.json(err);
         }
