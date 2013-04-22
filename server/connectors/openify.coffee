@@ -1,4 +1,3 @@
-Book = require '../book'
 Client = require('nodejs-api-client').OpenifyItClient
 
 class OpenifyItConnector
