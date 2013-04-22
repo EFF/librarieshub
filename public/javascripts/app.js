@@ -5,6 +5,7 @@ myApp.controller('Search', function($scope, $http) {
     $scope.busy = false;
 
     $scope.submit = function(){
+        $scope.books = new Array();
         getBooks();
     }
 
