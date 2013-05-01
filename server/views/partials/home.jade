@@ -1,18 +1,17 @@
-.container(ng-controller="HomeCtrl")
-            .row
-                header.page-header
-                    img(src="/images/logo.png")
-            .row
-                form.form-search(ng-submit="submit()")
-                    .input-append
-                        input.search-query.input-xxlarge(type="text", ng-model="query")
-                        input.btn.btn-primary(type="submit", value="Search")
-            .row
-                ul.unstyled(infinite-scroll="next()")
-                    li.row.span12.well(ng-repeat="book in books")
-                        h4.span8 {{book._source.titre}}
-                        .span6 {{book._source.auteur}}
-                        .span6 {{book._source.editeur}}
-                        .span6 {{book._source.type}}
-                        .span6 {{book._source.sujet}}
-                        .span12 {{book._source.description}}
+.jumbotron(ng-controller="HomeCtrl")
+    .container
+        .searchContainer.span8.offset2
+            h1 Trouver un livre
+            form.form-inline(ng-submit="submit()")
+                input.search-query.span5(type="text", ng-model="query")
+                input.btn.btn-success.span2(type="submit", value="Trouver")
+    .container
+        .row
+            ul.unstyled(infinite-scroll="next()")
+                li.row.span12.well(ng-repeat="book in books")
+                    h4.span8 {{book._source.titre}}
+                    .span6 {{book._source.auteur}}
+                    .span6 {{book._source.editeur}}
+                    .span6 {{book._source.type}}
+                    .span6 {{book._source.sujet}}
+                    .span12 {{book._source.description}}

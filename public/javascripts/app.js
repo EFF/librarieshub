@@ -2,6 +2,8 @@
 goog.provide('LibrariesHub.Application');
 
 goog.require('LibrariesHub.controllers.Home');
+goog.require('LibrariesHub.controllers.Menu');
+
 
 LibrariesHub.Application = function() {};
 
@@ -15,7 +17,8 @@ LibrariesHub.Application.prototype.start = function() {
             .when('/home', {controller: 'HomeCtrl', templateUrl: '/partials/home.html'});
     }]);
 
-    module.controller('HomeCtrl', ['$scope', LibrariesHub.controllers.Home]);
+    module.controller('HomeCtrl', ['$scope', '$http', LibrariesHub.controllers.Home])
+        .controller('MenuCtrl', ['$scope', LibrariesHub.controllers.Menu]);
 };
 
 goog.exportSymbol('LibrariesHub', LibrariesHub);

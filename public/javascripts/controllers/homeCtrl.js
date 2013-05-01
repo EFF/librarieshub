@@ -1,6 +1,6 @@
 goog.provide('LibrariesHub.controllers.Home');
 
-LibrariesHub.controllers.Home = function ($scope){
+LibrariesHub.controllers.Home = function ($scope, $http){
     $scope.query = '';
     $scope.books = new Array();
     $scope.busy = false;
