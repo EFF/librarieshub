@@ -1,4 +1,5 @@
 express = require 'express'
+searchInteractor = require './interactors/search'
 
 app = express()
 require('./configurations') app, express
