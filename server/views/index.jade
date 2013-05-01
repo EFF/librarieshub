@@ -3,7 +3,7 @@ html(ng-app="librariesHub", lang="en")
     head
         meta charset="utf-8"
         meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
-        title LibrariesHub by Openify.it
+        title biblioQuébec by Openify.it
         meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
 
         // [if lt IE 9]>
@@ -14,29 +14,29 @@ html(ng-app="librariesHub", lang="en")
 
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js")
-        script(src="https://raw.github.com/BinaryMuse/ngInfiniteScroll/1.0.0/build/ng-infinite-scroll.min.js")
         script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js")
+        script(src="https://raw.github.com/BinaryMuse/ngInfiniteScroll/1.0.0/build/ng-infinite-scroll.min.js")
 
-        script(src="/javascripts/app.js")
+        if isDev
+            script(type='text/javascript', src='/closure/base.js')
+            script(type='text/javascript', src='/javascripts/deps.js')
+        else
+            script(type='text/javascript', src='/javascripts/compiled.js')
 
-    body(ng-controller="Search")
-        .container
-            .row
-                header.page-header
-                    img(src="/images/logo.png")
-            .row
-                form.form-search(ng-submit="submit()")
-                    .input-append
-                        input.search-query.input-xxlarge(type="text", ng-model="query")
-                        input.btn.btn-primary(type="submit", value="Search")
-            .row
-                ul.unstyled(infinite-scroll="next()")
-                    li.row.span12.well(ng-repeat="book in books")
-                        h4.span8 {{book._source.titre}}
-                        .span6 {{book._source.auteur}}
-                        .span6 {{book._source.editeur}}
-                        .span6 {{book._source.type}}
-                        .span6 {{book._source.sujet}}
-                        .span12 {{book._source.description}}
+        script(type='text/javascript')
+            goog.require('LibrariesHub.Application');
+        script(type='text/javascript')
+            var app = new LibrariesHub.Application();
+            app.start();
 
-        
+    body
+        div(ng-view)
+        footer.row
+            .span4
+                p Developped by your friends @
+                    a(href"http://openify.it") Openify.it
+            .span6.pull-right.socialLinks
+                a.pull-right.twitter(href="https://twitter.com/OpenifyIt")
+                a.pull-right.facebook(href="https://www.facebook.com/OpenifyIt")
+                a.pull-right.github(href="https://github.com/OpenifyIt")
+                span.follow.pull-right Follow us :
