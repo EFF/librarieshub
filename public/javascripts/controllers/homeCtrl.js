@@ -6,6 +6,7 @@ LibrariesHub.controllers.Home = function ($scope, $http){
     $scope.busy = false;
 
     $scope.submit = function(){
+        $scope.books = [];
         getBooks();
     }
 

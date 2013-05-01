@@ -6,7 +6,7 @@ div(ng-controller="HomeCtrl")
                 form.form-inline(ng-submit="submit()")
                     input.search-query.span5(type="text", ng-model="query")
                     input.btn.btn-success.span2(type="submit", value="Trouver")
-    .container
+    .container(ng-class="{results : books.length > 0}")
         .row
             ul.unstyled(infinite-scroll="next()")
                 li.row.span12.well(ng-repeat="book in books")
