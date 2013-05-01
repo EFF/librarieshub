@@ -1,36 +1,29 @@
-var myApp = angular.module('librariesHub', ['infinite-scroll']);
-myApp.controller('Search', function($scope, $http) {
-    $scope.query = '';
-    $scope.books = new Array();
-    $scope.busy = false;
 
-    $scope.submit = function(){
-        $scope.books = new Array();
-        getBooks();
-    }
+goog.provide('LibrariesHub.Application');
 
-    $scope.next = function(){
-        getBooks();
-    }
+goog.require('LibrariesHub.controllers.Home');
+goog.require('LibrariesHub.controllers.Menu');
+goog.require('LibrariesHub.controllers.Footer');
 
-    var getBooks = function(){
-        if($scope.query && !$scope.busy){
-            $scope.busy = true;
-            $http.get('/api/search', {
-                params:{
-                    q: $scope.query,
-                    offset: $scope.books.length
-                }
-            })
-            .success(function(data) {
-                $scope.books.push.apply($scope.books, data.books);
-                console.log($scope.books.length);
-                $scope.busy = false;
-            })
-            .error(function(data, status){
-                $scope.books = new Array();
-                $scope.busy = false;
-            });
-        }
-    }
-});
+
+LibrariesHub.Application = function() {};
+
+LibrariesHub.Application.prototype.start = function() {
+    var module = angular.module('librariesHub', ['infinite-scroll']);
+
+    module.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+        $locationProvider.html5Mode(false).hashPrefix('!');
+        $routeProvider
+            .when('/', {redirectTo: '/home'})
+            .when('/home', {controller: 'HomeCtrl', templateUrl: '/partials/home.html'});
+    }]);
+
+    module.controller('HomeCtrl', ['$scope', '$http', LibrariesHub.controllers.Home])
+        .controller('MenuCtrl', ['$scope', LibrariesHub.controllers.Menu])
+        .controller('FooterCtrl', ['$scope', LibrariesHub.controllers.Footer]);
+};
+
+goog.exportSymbol('LibrariesHub', LibrariesHub);
+goog.exportSymbol('LibrariesHub.Application', LibrariesHub.Application);
+goog.exportProperty(LibrariesHub.Application, 'start', LibrariesHub.Application.prototype.start);
+
