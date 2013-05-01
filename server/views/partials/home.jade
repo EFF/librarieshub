@@ -1,10 +1,11 @@
-.jumbotron(ng-controller="HomeCtrl")
-    .container
-        .searchContainer.span8.offset2
-            h1 Trouver un livre
-            form.form-inline(ng-submit="submit()")
-                input.search-query.span5(type="text", ng-model="query")
-                input.btn.btn-success.span2(type="submit", value="Trouver")
+div(ng-controller="HomeCtrl")
+    .jumbotron
+        .container
+            .searchContainer.span8.offset2
+                h1 Trouver un livre
+                form.form-inline(ng-submit="submit()")
+                    input.search-query.span5(type="text", ng-model="query")
+                    input.btn.btn-success.span2(type="submit", value="Trouver")
     .container
         .row
             ul.unstyled(infinite-scroll="next()")

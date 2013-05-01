@@ -6,7 +6,6 @@ LibrariesHub.controllers.Home = function ($scope, $http){
     $scope.busy = false;
 
     $scope.submit = function(){
-        $scope.books = new Array();
         getBooks();
     }
 
@@ -25,7 +24,6 @@ LibrariesHub.controllers.Home = function ($scope, $http){
             })
             .success(function(data) {
                 $scope.books.push.apply($scope.books, data.books);
-                console.log($scope.books.length);
                 $scope.busy = false;
             })
             .error(function(data, status){
