@@ -8,10 +8,11 @@
     "stylus": "0.32.x",
     "coffee-script": "1.4.x",
     "nib": "0.9.x",
+    "coffee-script": "1.4.x",
     "nodejs-api-client": "0.0.x"
   },
   "scripts":{
     "start": "foreman start"
   },
-  "main": "server/app.js"
+  "main": "server/app.coffee"
 }

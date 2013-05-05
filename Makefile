@@ -1,2 +1,8 @@
+compile-javascript:
+	./compile_javascript.sh
+
 nodemon:
-	foreman start -f Procfile.dev
+	make compile-javascript
+	foreman start -f Procfile.dev -p 5000
+
+.PHONY: nodemon compile-javascript
