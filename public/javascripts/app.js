@@ -7,7 +7,6 @@ goog.require('LibrariesHub.controllers.Footer');
 
 goog.require('LibrariesHub.directives.Book')
 
-
 LibrariesHub.Application = function() {};
 
 LibrariesHub.Application.prototype.start = function() {
