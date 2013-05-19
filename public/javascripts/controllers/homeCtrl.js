@@ -7,6 +7,8 @@ LibrariesHub.controllers.Home = function ($scope, $http){
 
     $scope.submit = function(){
         $scope.books = [];
+        $scope.firstIteration = true
+
         getBooks();
     }
 
@@ -26,6 +28,8 @@ LibrariesHub.controllers.Home = function ($scope, $http){
             .success(function(data) {
                 $scope.books.push.apply($scope.books, data.books);
                 $scope.busy = false;
+
+                scrollToResultsIfFirstRequest();
             })
             .error(function(data, status){
                 $scope.books = new Array();
@@ -33,4 +37,12 @@ LibrariesHub.controllers.Home = function ($scope, $http){
             });
         }
     }
+
+    var scrollToResultsIfFirstRequest = function(){
+        if($scope.firstIteration){
+            var jumbotronBottom = angular.element('#header').height() + angular.element('#navbar').height();
+            angular.element('html,body').animate({scrollTop: jumbotronBottom}, 150, 'swing');
+            $scope.firstIteration = false;
+        }
+    };
 }
