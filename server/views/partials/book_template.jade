@@ -1,7 +1,15 @@
 .span8.offset2.book
-    h4 {{book._source.titre}}
-    p {{book._source.auteur}}
-    p {{book._source.editeur}}
-    p {{book._source.type}}
-    p {{book._source.sujet}}
-    p {{book._source.description}}
+    .row
+        .span1
+            img(class="img-rounded", ng-src="{{book._source.thumbnail}}", ng-show="book._source.thumbnail")
+            img(class="img-rounder", src="http://placehold.it/75x110", ng-hide="book._source.thumbnail")
+        .span7
+            h4 {{book._source.titre}}
+            p Auteur: {{book._source.auteur}}
+            p Éditeur: {{book._source.editeur}}
+            p Genre: {{book._source.type}}
+    .links
+        a.provider.provider-amazon(ng-href="{{book._source.amazon_link}}", ng-show="book._source.amazon_link", tooltip="Disponible chez Amazon")
+        .provider.provider-amazon.provider-disable(ng-hide="book._source.amazon_link")
+
+        a.provider.provider-library(href="#", tooltip="Disponible à la bibliothèque de Saint-Albert")

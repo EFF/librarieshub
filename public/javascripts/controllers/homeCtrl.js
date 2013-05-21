@@ -2,19 +2,19 @@ goog.provide('LibrariesHub.controllers.Home');
 
 LibrariesHub.controllers.Home = function ($scope, $http){
     $scope.query = '';
-    $scope.books = new Array();
+    $scope.books = [];
     $scope.busy = false;
 
     $scope.submit = function(){
         $scope.books = [];
-        $scope.firstIteration = true
+        $scope.firstIteration = true;
 
         getBooks();
-    }
+    };
 
     $scope.next = function(){
         getBooks();
-    }
+    };
 
     var getBooks = function(){
         if($scope.query && !$scope.busy){
@@ -32,11 +32,11 @@ LibrariesHub.controllers.Home = function ($scope, $http){
                 scrollToResultsIfFirstRequest();
             })
             .error(function(data, status){
-                $scope.books = new Array();
+                $scope.books = [];
                 $scope.busy = false;
             });
         }
-    }
+    };
 
     var scrollToResultsIfFirstRequest = function(){
         if($scope.firstIteration){
@@ -45,4 +45,4 @@ LibrariesHub.controllers.Home = function ($scope, $http){
             $scope.firstIteration = false;
         }
     };
-}
+};

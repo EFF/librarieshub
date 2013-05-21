@@ -9,10 +9,17 @@
     "coffee-script": "1.4.x",
     "nib": "0.9.x",
     "coffee-script": "1.4.x",
-    "nodejs-api-client": "0.0.x"
+    "nodejs-api-client": "0.0.x",
+    "apac": "0.0.x"
+  },
+  "devDependencies": {
+    "nodemon": "0.6.x",
+    "karma": "0.8.x",
+    "jasmine-node": "1.7.x"
   },
   "scripts":{
-    "start": "foreman start"
+    "start": "foreman start",
+    "test": "make --file ./test/Makefile test-all APPEND_TO_PATH='/test'"
   },
   "main": "server/app.coffee"
 }
