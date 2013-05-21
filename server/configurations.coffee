@@ -21,7 +21,7 @@ module.exports = (app, express) ->
 
         app.disable 'x-powered-by'
         
-        app.use express.favicon()
+        app.use express.favicon("#{publicDirectory}/images/favicon32.png")
         app.use express.bodyParser()
         app.use express.methodOverride()
         app.use app.router
