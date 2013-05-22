@@ -22,11 +22,5 @@ For development purposes, it's recommended to start the server using nodemon. Th
     make nodemon
 
 ## How to run tests
-
-Back-end test
     
     npm test
-
-Front-end end-2end test
-    
-    karma start test/website/karma-e2e.conf.js
