@@ -10,18 +10,30 @@ class IsbnExtractor
         # TODO: Check checksum digit
         # See: http://en.wikipedia.org/wiki/International_Standard_Book_Number
         if isbn.length >= 10
-            isbn = isbn.replace '-', ''
+            isbn = isbn.replace /[-\.\s]/, ''
             
-            # Check for ISBN 13
-            result = isbn.match(/([0-9]{13})/)
-            if result and result[0]
-                return result[0]
+            isbn13 = @extractIsbn13(isbn)
+            return isbn13 if isbn13
 
-            # Check for ISBN10
-            result = isbn.match(/([0-9]{9}[0-9X])/i)
-            if result and result[0]
-                return result[0]
+            isbn10 = @extractIsbn10(isbn)
+            return isbn10 if isbn10
 
         return false
+
+    extractIsbn13: (isbn) ->
+        result = isbn.match(/([0-9]{13})/)
+        if result and result[0]
+            return result[0]
+        else
+            return false
+
+    extractIsbn10: (isbn) ->
+        result = isbn.match(/([0-9]{9}[0-9X])/i)
+        if result and result[0]
+            return result[0]
+        else
+            return false
+
+
 
 module.exports = new IsbnExtractor()

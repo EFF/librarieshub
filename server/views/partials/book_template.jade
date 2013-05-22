@@ -2,7 +2,7 @@
     .row
         .span1
             img(class="img-rounded", ng-src="{{book._source.thumbnail}}", ng-show="book._source.thumbnail")
-            img(class="img-rounder", src="http://placehold.it/75x110", ng-hide="book._source.thumbnail")
+            img(class="img-rounder", src="http://placehold.it/75x110&text=N/D", ng-hide="book._source.thumbnail")
         .span7
             h4 {{book._source.titre}}
             p Auteur: {{book._source.auteur}}
@@ -12,4 +12,4 @@
         a.provider.provider-amazon(ng-href="{{book._source.amazon_link}}", ng-show="book._source.amazon_link", tooltip="Disponible chez Amazon")
         .provider.provider-amazon.provider-disable(ng-hide="book._source.amazon_link")
 
-        a.provider.provider-library(href="#", tooltip="Disponible à la bibliothèque de Saint-Albert")
+        .provider.provider-library(href="#", tooltip="Disponible à la bibliothèque de Saint-Albert")

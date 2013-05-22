@@ -1,6 +1,6 @@
-# biblioQuébec
+# BiblioQuébec
 
-Projet démarré dans le cadre du Hackaton 2011 et réssucité en 2013 par l'équipe d'Openify.it
+This project first started a few years ago during the first Quebec City Hackathon in 2011. In 2013, the Openify.it team decided to revamp it.
 http://capitaleouverte.org/2011/10/premier_hackathon_12_novembre/
 
 ## How to install

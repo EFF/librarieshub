@@ -15,7 +15,12 @@ class SearchInteractor
 
     _searchDataset: (options, callback) =>
         openifyItConnector.search options, (err, results) ->
-            callback err, results.data
+            if err
+                callback err
+            else if not results.data
+                callback "Erreur lors du traitement de la requête."
+            else            
+                callback null, results.data
 
     _getProductsDetails: (books, callback) =>
         async.each books, @_getProductDetails, (err) ->

@@ -1,6 +1,5 @@
 express = require 'express'
 searchInteractor = require './interactors/search'
-amazonProductConnector = require './connectors/amazon_product'
 
 app = express()
 require('./configurations') app, express
