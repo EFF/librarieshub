@@ -1,0 +1,135 @@
+{
+  "ItemLookupResponse": {
+    "$": {
+      "xmlns": "http://webservices.amazon.com/AWSECommerceService/2011-08-01"
+    },
+    "OperationRequest": [
+      {
+        "RequestId": [
+          "991f131c-e15e-4182-80c3-1d2eb829174b"
+        ],
+        "Arguments": [
+          {
+            "Argument": [
+              {
+                "$": {
+                  "Name": "Operation",
+                  "Value": "ItemLookup"
+                }
+              },
+              {
+                "$": {
+                  "Name": "Service",
+                  "Value": "AWSECommerceService"
+                }
+              },
+              {
+                "$": {
+                  "Name": "AssociateTag",
+                  "Value": "biblio0b-20"
+                }
+              },
+              {
+                "$": {
+                  "Name": "Version",
+                  "Value": "2010-11-01"
+                }
+              },
+              {
+                "$": {
+                  "Name": "SearchIndex",
+                  "Value": "Books"
+                }
+              },
+              {
+                "$": {
+                  "Name": "Signature",
+                  "Value": "DwFq54EUYjVISxb+KvHdqfRqpcN6J5DpK5mx0O1bLMQ="
+                }
+              },
+              {
+                "$": {
+                  "Name": "ItemId",
+                  "Value": "0439708xxx"
+                }
+              },
+              {
+                "$": {
+                  "Name": "IdType",
+                  "Value": "ISBN"
+                }
+              },
+              {
+                "$": {
+                  "Name": "AWSAccessKeyId",
+                  "Value": "AKIAJAHG2DA422GGAOGA"
+                }
+              },
+              {
+                "$": {
+                  "Name": "Timestamp",
+                  "Value": "2013-05-22T00:22:37Z"
+                }
+              },
+              {
+                "$": {
+                  "Name": "ResponseGroup",
+                  "Value": "ItemAttributes, Images, EditorialReview"
+                }
+              }
+            ]
+          }
+        ],
+        "RequestProcessingTime": [
+          "0.0999520000000000"
+        ]
+      }
+    ],
+    "Items": [
+      {
+        "Request": [
+          {
+            "IsValid": [
+              "True"
+            ],
+            "ItemLookupRequest": [
+              {
+                "IdType": [
+                  "ISBN"
+                ],
+                "ItemId": [
+                  "0439708XXX"
+                ],
+                "ResponseGroup": [
+                  "ItemAttributes",
+                  "Images",
+                  "EditorialReview"
+                ],
+                "SearchIndex": [
+                  "Books"
+                ],
+                "VariationPage": [
+                  "All"
+                ]
+              }
+            ],
+            "Errors": [
+              {
+                "Error": [
+                  {
+                    "Code": [
+                      "AWS.InvalidParameterValue"
+                    ],
+                    "Message": [
+                      "0439708XXX is not a valid value for ItemId. Please change this value and retry your request."
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
