@@ -84,11 +84,35 @@ coolOrange = #FF7F00
 .results
     margin-bottom 150px
 .book
+    position relative
     border solid 1px rgba(0,0,0,0.1)
     padding 20px 10px
     margin-bottom 10px
     p
         margin-bottom 5px
+
+    .links
+        position absolute
+        bottom 0
+        right 0
+        padding-right 20px
+
+        .provider
+            width 32px
+            height 32px
+            background-position 0% 0%
+            float left
+            margin-left 10px
+
+        .provider-disable
+            background-position 0% 100%
+
+        .provider-amazon
+            background-image url('../images/provider/amazon.png')
+
+        .provider-library
+            background-image url('../images/provider/library.png')
+
 footer
     .backTop
         height 20px
@@ -100,7 +124,7 @@ footer
     position fixed
     bottom 0
     width 100%
-    padding 40px 0
+    padding 20px 0
     color white
     background-color rgb(60,60,60)
     .follow

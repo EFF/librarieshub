@@ -10,7 +10,7 @@ goog.require('LibrariesHub.directives.Book')
 LibrariesHub.Application = function() {};
 
 LibrariesHub.Application.prototype.start = function() {
-    var module = angular.module('librariesHub', ['infinite-scroll']);
+    var module = angular.module('librariesHub', ['infinite-scroll', 'ui.bootstrap']);
 
     module.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
         $locationProvider.html5Mode(false).hashPrefix('!');
