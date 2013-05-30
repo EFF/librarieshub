@@ -1,3 +1,4 @@
+require 'newrelic' if process.env.NODE_ENV is 'production'
 express = require 'express'
 searchInteractor = require './interactors/search'
 
