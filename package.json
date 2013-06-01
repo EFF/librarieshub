@@ -19,11 +19,12 @@
     "karma": "~0.8.5",
     "jasmine-node": "~1.8.0",
     "grunt": "~0.4.1",
-    "grunt-contrib-jasmine-node": "~0.1.0"
+    "grunt-contrib-jasmine-node": "~0.1.0",
+    "grunt-coffeelint": "0.0.6"
   },
   "scripts": {
     "start": "foreman start",
-    "test": "grunt jasmine-node"
+    "test": "grunt"
   },
   "main": "server/app.coffee"
 }

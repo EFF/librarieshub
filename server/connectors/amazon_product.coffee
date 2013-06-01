@@ -1,4 +1,4 @@
-OperationHelper = require('apac').OperationHelper;
+OperationHelper = require('apac').OperationHelper
 
 class AmazonProductConnector
 
@@ -6,7 +6,7 @@ class AmazonProductConnector
         @credentials = {
             awsId: process.env.AMAZON_KEY_ID,
             awsSecret: process.env.AMAZON_SECRET_KEY_ID,
-            assocId: process.env.AMAZON_ASSOCIATE_TAG,            
+            assocId: process.env.AMAZON_ASSOCIATE_TAG,
         }
 
     lookupByISBN: (isbn, callback) ->
@@ -23,7 +23,9 @@ class AmazonProductConnector
     _lookupByISBNCallback: (callback, err, response) ->
         return callback err if err
         data = {}
-        if response.ItemLookupResponse and response.ItemLookupResponse.Items and response.ItemLookupResponse.Items[0].Item
+        if (response.ItemLookupResponse and
+        response.ItemLookupResponse.Items and
+        response.ItemLookupResponse.Items[0].Item)
             item = response.ItemLookupResponse.Items[0].Item[0]
 
             if item.DetailPageURL
@@ -36,8 +38,11 @@ class AmazonProductConnector
                     data.editeur = attributes.Publisher.join(', ')
                 if attributes.Title
                     data.titre = attributes.Title.join(', ')
-            if item.ImageSets and item.ImageSets[0].ImageSet and item.ImageSets[0].ImageSet[0].TinyImage and item.ImageSets[0].ImageSet[0].TinyImage[0].URL
-                data.thumbnail = item.ImageSets[0].ImageSet[0].TinyImage[0].URL[0]
+            if (item.ImageSets and item.ImageSets[0].ImageSet and
+            item.ImageSets[0].ImageSet[0].TinyImage and
+            item.ImageSets[0].ImageSet[0].TinyImage[0].URL)
+                data.thumbnail = item.ImageSets[0].ImageSet[0].TinyImage[0] \
+                .URL[0]
 
         callback null, data
 

@@ -25,11 +25,18 @@ module.exports = (app, express) ->
         app.use express.bodyParser()
         app.use express.methodOverride()
         app.use app.router
-        app.use stylus.middleware({src : publicDirectory, compile : compileStylus})
+        app.use stylus.middleware(
+            src : publicDirectory
+            compile : compileStylus
+        )
         app.use express.static(publicDirectory)
 
     app.configure 'development', () ->
         app.use express.logger('dev')
-        app.use express.errorHandler({ dumpExceptions: true, showStack: true })
-        closureDirectory = path.join __dirname, '../vendors/closure-library/closure/goog'
+        app.use express.errorHandler(
+            dumpExceptions: true
+            showStack: true
+        )
+        closureDirectory = path.join __dirname,
+            '../vendors/closure-library/closure/goog'
         app.use('/closure', express.static(closureDirectory))
