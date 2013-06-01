@@ -5,7 +5,7 @@ class OpenifyItConnector
         @client = new Client('api-staging.openify.it', 80, process.env.API_KEY, process.env.SECRET_KEY)
 
     search: (options, callback) =>
-        params = 
+        params =
             q: options.q || ''
             limit: options.limit || 10
             offset: options.offset || 0
