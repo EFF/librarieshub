@@ -7,7 +7,7 @@ isbnExtractor = require '../util/isbn_extractor'
 class SearchInteractor
 
     search: (options, callback) =>
-        # TODO: Idea: Use Amazon Product API to display other books too (not in library)
+        # TODO: Use Amazon Product API to display books not in library
         async.waterfall [
             @_searchDataset.bind @, options
             @_getProductsDetails
@@ -19,20 +19,23 @@ class SearchInteractor
                 callback err
             else if not results.data
                 callback "Erreur lors du traitement de la requête."
-            else            
+            else
                 callback null, results.data
 
     _getProductsDetails: (books, callback) =>
         async.each books, @_getProductDetails, (err) ->
-            # We don't care if we got an error b/c this is just 
+            # We don't care if we got an error b/c this is just
             # to complement the information about a book
             callback null, books
 
     _getProductDetails: (book, callback) =>
         if book._source.isbn
             isbn = isbnExtractor.extract(book._source.isbn)
-            if isbn           
-                amazonProductConnector.lookupByISBN isbn, @_complementProductDetails.bind(@, book, callback)
+            if isbn
+                amazonProductConnector.lookupByISBN(
+                    isbn
+                    @_complementProductDetails.bind(@, book, callback)
+                )
             else
                 callback null
         else

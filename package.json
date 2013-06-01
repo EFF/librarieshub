@@ -2,26 +2,29 @@
   "name": "LibrariesHub",
   "version": "0.1.0",
   "dependencies": {
-    "express": "3.0.x",
+    "express": "~3.2.5",
     "jade": "~0.28.2",
-    "async": "0.2.x",
-    "stylus": "0.32.x",
+    "async": "~0.2.9",
+    "stylus": "~0.32.1",
     "coffee-script": "1.4.x",
-    "nib": "0.9.x",
-    "coffee-script": "1.4.x",
-    "nodejs-api-client": "0.0.x",
-    "apac": "0.0.x",
-    "xtend": "2.0.x",
-    "newrelic": "0.9.x"
+    "nib": "~0.9.1",
+    "nodejs-api-client": "~0.0.8",
+    "apac": "~0.0.11",
+    "xtend": "~2.0.4",
+    "newrelic": "~0.9.20",
+    "grunt": "~0.4.1"
   },
   "devDependencies": {
-    "nodemon": "0.6.x",
-    "karma": "0.8.x",
-    "jasmine-node": "1.7.x"
+    "nodemon": "~0.7.8",
+    "karma": "~0.8.5",
+    "jasmine-node": "~1.8.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jasmine-node": "git://github.com/jackdbernier/grunt-contrib-jasmine-node.git",
+    "grunt-coffeelint": "0.0.6"
   },
-  "scripts":{
+  "scripts": {
     "start": "foreman start",
-    "test": "make --file ./test/Makefile test-all APPEND_TO_PATH='/test'"
+    "test": "grunt"
   },
   "main": "server/app.coffee"
 }
