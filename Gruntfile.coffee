@@ -6,6 +6,7 @@ module.exports = (grunt) ->
                 verbose: true
             run:
                 spec: 'test'
+            executable: './node_modules/.bin/jasmine-node'
         coffeelint:
             app: ['server/**/*.coffee']
             tests: ['test/server/**/*.coffee']
