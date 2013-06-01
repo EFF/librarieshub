@@ -19,4 +19,4 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-jasmine-node'
     grunt.loadNpmTasks 'grunt-coffeelint'
 
-    grunt.registerTask 'default', ['jasmine-node', 'coffeelint']
+    grunt.registerTask 'default', ['coffeelint', 'jasmine-node']
