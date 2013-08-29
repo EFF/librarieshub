@@ -10,7 +10,7 @@ module.exports = (app, express) ->
             .set('compress', true)
             .use(nib())
             .import('nib')
-    
+
     app.configure () ->
 
         publicDirectory = path.join __dirname, '../public'
@@ -20,7 +20,7 @@ module.exports = (app, express) ->
         app.set 'view engine', 'jade'
 
         app.disable 'x-powered-by'
-        
+
         app.use express.favicon("#{publicDirectory}/images/favicon32.png")
         app.use express.bodyParser()
         app.use express.methodOverride()

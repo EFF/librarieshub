@@ -17,10 +17,10 @@ class SearchInteractor
         openifyItConnector.search options, (err, results) ->
             if err
                 callback err
-            else if not results.data
+            else if not results.body or not results.body.data
                 callback "Erreur lors du traitement de la requête."
             else
-                callback null, results.data
+                callback null, results.body.data
 
     _getProductsDetails: (books, callback) =>
         async.each books, @_getProductDetails, (err) ->
@@ -32,6 +32,7 @@ class SearchInteractor
         if book._source.isbn
             isbn = isbnExtractor.extract(book._source.isbn)
             if isbn
+                book._source.isbn = isbn
                 amazonProductConnector.lookupByISBN(
                     isbn
                     @_complementProductDetails.bind(@, book, callback)

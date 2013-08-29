@@ -1,14 +1,18 @@
-Client = require('nodejs-api-client').OpenifyItClient
+Client = require('nodejs-api-client')
 
 class OpenifyItConnector
     constructor: () ->
-        @client = new Client('api-staging.openify.it', 80, process.env.API_KEY, process.env.SECRET_KEY)
+        host = process.env.API_HOST || 'api.openify.it'
+        port = process.env.API_PORT || 80
+        @client = new Client(host, port, process.env.API_KEY, process.env.SECRET_KEY)
 
     search: (options, callback) =>
         params =
-            q: options.q || ''
-            limit: options.limit || 10
-            offset: options.offset || 0
-        @client.path 'GET', "/datasets/#{process.env.DATASET_ID}/search", params, {}, {}, callback
+            json: true
+            qs:
+                q: options.q || ''
+                limit: options.limit || 10
+                offset: options.offset || 0
+        @client.path 'GET', "/v0/datasets/#{process.env.DATASET_ID}/data", params, callback
 
 module.exports = new OpenifyItConnector()

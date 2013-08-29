@@ -8,11 +8,11 @@
     "stylus": "~0.32.1",
     "coffee-script": "1.4.x",
     "nib": "~0.9.1",
-    "nodejs-api-client": "~0.0.8",
     "apac": "~0.0.11",
     "xtend": "~2.0.4",
     "newrelic": "~0.9.20",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "nodejs-api-client": "~0.3.1"
   },
   "devDependencies": {
     "nodemon": "~0.7.8",

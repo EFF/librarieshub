@@ -2,7 +2,7 @@
     .row
         .span1
             img(class="img-rounded", ng-src="{{book._source.thumbnail}}", ng-show="book._source.thumbnail")
-            img(class="img-rounder", src="http://placehold.it/75x110&text=N/D", ng-hide="book._source.thumbnail")
+            img(class="img-rounder", ng-src="http://covers.openlibrary.org/b/isbn/{{book._source.isbn}}-S.jpg", ng-hide="book._source.thumbnail")
         .span7
             h4 {{book._source.titre}}
             p Auteur: {{book._source.auteur}}
