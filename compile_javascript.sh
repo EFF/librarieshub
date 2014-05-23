@@ -4,7 +4,7 @@ COMPILED_FILENAME=./public/javascripts/compiled.js
 DEPENDENCIES_FILENAME=./public/javascripts/deps.js
 COMPILER_FILENAME=./vendors/closure-compiler/compiler.jar
 NAMESPACE="LibrariesHub.Application"
-COMPILATION_LEVEL=SIMPLE_OPTIMIZATIONS
+COMPILATION_LEVEL=WHITESPACE_ONLY
 
 echo "Cleaning old files...."
 if [ -f $COMPILED_FILENAME ]; then

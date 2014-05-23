@@ -6,20 +6,18 @@
     "jade": "~0.28.2",
     "async": "~0.2.9",
     "stylus": "~0.32.1",
-    "coffee-script": "1.4.x",
     "nib": "~0.9.1",
     "apac": "~0.0.11",
     "xtend": "~2.0.4",
-    "newrelic": "~0.9.20",
     "grunt": "~0.4.1",
-    "nodejs-api-client": "~0.3.1"
+    "coffee-script": "~1.7.1"
   },
   "devDependencies": {
     "nodemon": "~0.7.8",
     "karma": "~0.8.5",
     "jasmine-node": "~1.8.0",
     "grunt": "~0.4.1",
-    "grunt-contrib-jasmine-node": "git://github.com/jackdbernier/grunt-contrib-jasmine-node.git",
+    "grunt-jasmine-node": "latest",
     "grunt-coffeelint": "0.0.6"
   },
   "scripts": {

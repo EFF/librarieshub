@@ -4,7 +4,7 @@ class OpenifyItConnector
     constructor: () ->
         host = process.env.API_HOST || 'api.openify.it'
         port = process.env.API_PORT || 80
-        @client = new Client(host, port, process.env.API_KEY, process.env.SECRET_KEY)
+        #@client = new Client(host, port, process.env.API_KEY, process.env.SECRET_KEY)
 
     search: (options, callback) =>
         params =

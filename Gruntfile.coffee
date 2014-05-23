@@ -1,6 +1,6 @@
 module.exports = (grunt) ->
     grunt.initConfig(
-        'jasmine-node':
+        jasmine_node:
             options:
                 coffee: true
                 verbose: true
@@ -17,7 +17,7 @@ module.exports = (grunt) ->
                     value: 120
     )
 
-    grunt.loadNpmTasks 'grunt-contrib-jasmine-node'
+    grunt.loadNpmTasks 'grunt-jasmine-node'
     grunt.loadNpmTasks 'grunt-coffeelint'
 
-    grunt.registerTask 'default', ['coffeelint', 'jasmine-node']
+    grunt.registerTask 'default', ['coffeelint', 'jasmine_node']
