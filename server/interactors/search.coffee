@@ -17,10 +17,10 @@ class SearchInteractor
         openifyItConnector.search options, (err, results) ->
             if err
                 callback err
-            else if not results.body or not results.body.data
+            else if not results.body or not results.body.hits or not results.body.hits.hits
                 callback "Erreur lors du traitement de la requête."
             else
-                callback null, results.body.data
+                callback null, results.body.hits.hits
 
     _getProductsDetails: (books, callback) =>
         async.each books, @_getProductDetails, (err) ->
