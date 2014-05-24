@@ -1,4 +1,4 @@
-isbnExtractor = require '../../../../server/util/isbn_extractor'
+isbnExtractor = require '../server/util/isbn_extractor'
 
 describe 'ISBN extractor', ->
 
