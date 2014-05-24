@@ -26,5 +26,5 @@
     "start": "foreman start",
     "test": "grunt"
   },
-  "main": "server/app.coffee"
+  "main": "server/main.js"
 }
