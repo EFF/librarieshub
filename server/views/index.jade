@@ -32,24 +32,25 @@ html(ng-app="librariesHub", lang="en")
             app.start();
 
     body
-        header.jumbotron(ng-controller="HomeCtrl")
-            .center.search-logo
-                img(src='/images/glasses-white.svg')
-            h1 Trouver un livre
-            form.center.form-inline(ng-submit="submit()")
-                .input-group
-                    input.form-control.search-query.span5(type="text", ng-model="query")
-                    span.input-group-btn
-                        button.btn.btn-default(type="submit")
-                            img.search-btn(src='/images/glasses-black.svg')
-        .container(ng-class="{results : books.length > 0}")
-            .row(infinite-scroll="next()")
-                book(ng-repeat="book in books", book="book")
+        header(ng-controller="HomeCtrl")
+            .jumbotron
+                .center.search-logo
+                    img(src='/images/glasses-white.svg', alt="logo biblio Québec")
+                h1 Trouver un livre
+                form.center.form-inline(ng-submit="submit()")
+                    .input-group
+                        input.form-control.search-query.span5(type="text", ng-model="query")
+                        span.input-group-btn
+                            button.btn.btn-default(type="submit")
+                                img.search-btn(src='/images/glasses-black.svg', alt="search")
+            .container(ng-class="{results : books.length > 0}")
+                .row(infinite-scroll="next()")
+                    book(ng-repeat="book in books", book="book")
         footer
             .footer-content
                 p.by Développé par
             a(href="http://www.openify.it")
-                img(src='/images/openify-icon-white-small.png')
+                img(src='/images/openify-icon-white-small.png', alt="openify.it")
 
 
         script

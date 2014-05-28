@@ -40,8 +40,8 @@ LibrariesHub.controllers.Home = function ($scope, $http){
 
     var scrollToResultsIfFirstRequest = function(){
         if($scope.firstIteration){
-            var jumbotronBottom = angular.element('#header').height() + angular.element('#navbar').height();
-            angular.element('html,body').animate({scrollTop: jumbotronBottom}, 150, 'swing');
+            var jumbotronBottom = angular.element('header').height();
+            angular.element('html,body').animate({scrollTop: jumbotronBottom}, 800, 'swing');
             $scope.firstIteration = false;
         }
     };
