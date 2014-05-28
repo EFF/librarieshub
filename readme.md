@@ -33,4 +33,4 @@ For development purposes, it's recommended to start the server using nodemon. Th
 
 ##Design
 
-    Glasses designed by [Thomas Hirter](http://thenounproject.com/term/glasses/4938/) from the Noun Project
+Glasses designed by [Thomas Hirter](http://thenounproject.com/term/glasses/4938) from the Noun Project
