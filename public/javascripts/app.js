@@ -11,13 +11,6 @@ LibrariesHub.Application = function() {};
 LibrariesHub.Application.prototype.start = function() {
     var module = angular.module('librariesHub', ['infinite-scroll', 'ui.bootstrap']);
 
-//    module.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
-//        $locationProvider.html5Mode(false).hashPrefix('!');
-//        $routeProvider
-//            .when('/', {redirectTo: '/home'})
-//            .when('/home', {controller: 'HomeCtrl', templateUrl: '/partials/home.html'});
-//    }]);
-
     module.controller('HomeCtrl', ['$scope', '$http', LibrariesHub.controllers.Home])
         .controller('MenuCtrl', ['$scope', LibrariesHub.controllers.Menu])
 
