@@ -3,6 +3,6 @@ compile-javascript:
 
 nodemon:
 	make compile-javascript
-	foreman start -f Procfile.dev -p 3000
+	foreman start -f Procfile -p 3000
 
 .PHONY: nodemon compile-javascript
