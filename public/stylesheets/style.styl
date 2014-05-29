@@ -1,17 +1,15 @@
-lightGreen = #86bb5d
-lightGrey = #777
-coolOrange = #FF7F00
 darkBlue = #24274c
 
 html, body
     height 100%
     margin 0
+
 .center
     text-align center
-header
+
+header.jumbotron
+    color white
     min-height 500px
-    height 100%
-.jumbotron
     margin-bottom 0
     background-image url('/images/books.jpg')
     background-position center
@@ -19,8 +17,7 @@ header
     height 100%
     h1
         letter-spacing 2px
-        color white 
-        text-shadow 0 1px 15px rgba(0,0,0,0.5);
+        text-shadow 0 1px 15px rgba(0, 0, 0, 0.5);
         text-align center
         font-family Pacifico
     .search-logo
@@ -44,15 +41,17 @@ header
                     height 32px
                     width 50px
     .search-query
-      border-top-left-radius 18px
-      border-bottom-left-radius 18px
+        border-top-left-radius 18px
+        border-bottom-left-radius 18px
     .btn:focus
         outline none
+
 .results
     margin-bottom 150px
+
 .book
     position relative
-    border solid 1px rgba(0,0,0,0.1)
+    border solid 1px rgba(0, 0, 0, 0.1)
     padding 20px 10px
     margin-bottom 10px
     p
@@ -81,36 +80,38 @@ header
             background-image url('../images/provider/library.png')
 
 footer
-  position fixed
-  bottom 0
-  width 100%
-  height 6em
-  color white
-  letter-spacing 0.5px
-  background-color rgba(0,0,0,0.8)
-  .footer-content
-    text-align center
-    .by
-      display inline-block
-      position relative
-      line-height 1em
-      text-transform capitalize
-      &:before, &:after
-        content ""
-        position absolute
-        border-top solid 1px rgba(255,255,255,0.5)
-        top 0.5em
-        width 50%
-      &:before
-        right 100%
-        margin-right 5px
-      &:after
-        left 100%
-        margin-left 5px
-  a
-    text-align center
-    display block
-    width 55px
-    margin auto
-    img
-      max-height 3em
+    z-index 2
+    position fixed
+    bottom 0
+    width 100%
+    height 6em
+    color white
+    letter-spacing 0.5px
+    background-color rgba(26,31,58,0.5)
+    padding-top 0.5em
+    .footer-content
+        text-align center
+        .by
+            display inline-block
+            position relative
+            line-height 1em
+            text-transform capitalize
+            &:before, &:after
+                content ""
+                position absolute
+                border-top solid 1px rgba(255, 255, 255, 0.5)
+                top 0.5em
+                width 50%
+            &:before
+                right 100%
+                margin-right 5px
+            &:after
+                left 100%
+                margin-left 5px
+    a
+        text-align center
+        display block
+        width 55px
+        margin auto
+        img
+            max-height 3em

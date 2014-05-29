@@ -31,21 +31,20 @@ html(ng-app="librariesHub", lang="en")
             var app = new LibrariesHub.Application();
             app.start();
 
-    body
-        header(ng-controller="HomeCtrl")
-            .jumbotron
-                .center.search-logo
-                    img(src='/images/glasses-white.svg', alt="logo biblio Québec")
-                h1 Trouver un livre
-                form.center.form-inline(ng-submit="submit()")
-                    .input-group
-                        input.form-control.search-query.span5(type="text", ng-model="query")
-                        span.input-group-btn
-                            button.btn.btn-default(type="submit")
-                                img.search-btn(src='/images/glasses-black.svg', alt="search")
-            .container(ng-class="{results : books.length > 0}")
-                .row(infinite-scroll="next()")
-                    book(ng-repeat="book in books", book="book")
+    body(ng-controller="HomeCtrl")
+        header.jumbotron
+            .center.search-logo
+                img(src='/images/glasses-white.svg', alt="logo biblio Québec")
+            h1 Trouver un livre
+            form.center.form-inline(ng-submit="submit()")
+                .input-group
+                    input.form-control.search-query.span5(type="text", ng-model="query")
+                    span.input-group-btn
+                        button.btn.btn-default(type="submit")
+                            img.search-btn(src='/images/glasses-black.svg', alt="search")
+        .container(ng-class="{results : books.length > 0}")
+            .row(infinite-scroll="next()")
+                book(ng-repeat="book in books", book="book")
         footer
             .footer-content
                 p.by Développé par
