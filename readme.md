@@ -11,10 +11,13 @@ Bibliothèques – catalogue, provided by Quebec city, under their [data licence
 ## How to install
 
     git clone git@github.com:OpenifyIt/librarieshub.git
+    cd librarieshub
     git submodule init
     git submodule update
-    cd librarieshub
     npm install
+    cp .env.sample .env
+
+Edit `.env`
 
 ## How to launch
     
