@@ -9,12 +9,13 @@ html(ng-app="librariesHub", lang="en")
         // [if lt IE 9]>
             script(src="//html5shim.googlecode.com/svn/trunk/html5.js")
 
-        link(href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css", rel="stylesheet")
+        link(href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel="stylesheet")
+        link(href='http://fonts.googleapis.com/css?family=Pacifico', rel='stylesheet', type='text/css')
         link(rel="stylesheet", href="/stylesheets/style.css")
 
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
-        script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js")
+        script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
         script(src="/lib/ui-bootstrap-tpls-0.3.0.min.js")
         script(src="/lib/ng-infinite-scroll.min.js")
 
@@ -30,33 +31,26 @@ html(ng-app="librariesHub", lang="en")
             var app = new LibrariesHub.Application();
             app.start();
 
-    body
-        .navbar.navbar-fixed-top(id="navbar")
-            .navbar-inner.navbar-openify
-                .container(ng-controller='MenuCtrl')
-                    .row
-                        a.btn.btn-navbar(ng-click="toggleMenu()")
-                            span.icon-bar
-                            span.icon-bar
-                            span.icon-bar
-                        .span4.offset4.logoContainer
-                            img(src='../images/logo.png', alt='logo biblioQuébec')
-                        .nav-collapse.collapse
-                            ul.nav.pull-right
-                                li
-                                    a(href="#") À propos
-        div(ng-view)
-        footer.footer(ng-controller='FooterCtrl')
-            .container.footerContainer
-                .span4.pull-left.by
-                    p Développé par vos amis @
-                        a(href"http://openify.it") Openify.it
-                    a(ng-click="scrollTop()") Haut de la page
-                .span6.pull-right.socialLinks
-                    a.pull-right.twitter(href="https://twitter.com/OpenifyIt")
-                    a.pull-right.facebook(href="https://www.facebook.com/OpenifyIt")
-                    a.pull-right.github(href="https://github.com/OpenifyIt")
-                    span.follow.pull-right Suivez-nous :
+    body(ng-controller="HomeCtrl")
+        header.jumbotron
+            .center.search-logo
+                img(src='/images/glasses-white.svg', alt="logo biblio Québec")
+            h1 Trouver un livre
+            form.center.form-inline(ng-submit="submit()")
+                .input-group
+                    input.form-control.search-query.span5(type="text", ng-model="query")
+                    span.input-group-btn
+                        button.btn.btn-default(type="submit")
+                            img.search-btn(src='/images/glasses-black.svg', alt="search")
+        .container(ng-class="{results : books.length > 0}")
+            .row(infinite-scroll="next()")
+                book(ng-repeat="book in books", book="book")
+        footer
+            .footer-content
+                p.by Développé par
+            a(href="http://www.openify.it")
+                img(src='/images/openify-icon-white-small.png', alt="openify.it")
+
 
         script
             var _gaq = _gaq || [];

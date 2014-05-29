@@ -32,3 +32,8 @@ For development purposes, it's recommended to start the server using nodemon. Th
 ## How to run tests
     
     npm test
+
+
+## Design
+
+Glasses designed by [Thomas Hirter](http://thenounproject.com/term/glasses/4938) from the Noun Project
