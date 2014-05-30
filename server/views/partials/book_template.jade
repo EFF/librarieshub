@@ -1,15 +1,15 @@
-.span8.offset2.book
+.book
     .row
-        .span1
+        .book-thumbnail
             img(class="img-rounded", ng-src="{{book._source.thumbnail}}", ng-show="book._source.thumbnail")
             img(class="img-rounder", ng-src="http://covers.openlibrary.org/b/isbn/{{book._source.isbn}}-S.jpg", ng-hide="book._source.thumbnail")
-        .span7
+        .book-title
             h4 {{book._source.titre}}
-            p Auteur: {{book._source.auteur}}
-            p Éditeur: {{book._source.editeur}}
-            p Genre: {{book._source.type}}
+    .row.book-details
+        p Auteur: {{book._source.auteur}}
+        p Éditeur: {{book._source.editeur}}
+        p Genre: {{book._source.type}}
     .links
         a.provider.provider-amazon(ng-href="{{book._source.amazon_link}}", ng-show="book._source.amazon_link", tooltip="Disponible chez Amazon")
         .provider.provider-amazon.provider-disable(ng-hide="book._source.amazon_link")
-
         .provider.provider-library(href="#", tooltip="Disponible à la bibliothèque de Saint-Albert")
