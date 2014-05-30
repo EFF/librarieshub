@@ -43,7 +43,7 @@ html(ng-app="librariesHub", lang="en")
                         button.btn.btn-default(type="submit")
                             img.search-btn(src='/images/glasses-black.svg', alt="search")
         .container(ng-class="{results : books.length > 0}")
-            div(infinite-scroll="next()")
+            .row(infinite-scroll="next()")
                 book(ng-repeat="book in books", book="book")
         footer
             .footer-content
