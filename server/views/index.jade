@@ -13,6 +13,35 @@ html(ng-app="librariesHub", lang="fr")
         link(href='http://fonts.googleapis.com/css?family=Pacifico', rel='stylesheet', type='text/css')
         link(rel="stylesheet", href="/stylesheets/style.css")
 
+    body(ng-controller="HomeCtrl")
+        header.jumbotron
+            .center.search-logo
+                img(src='/images/glasses-white.svg', alt="logo biblio Québec")
+            h1 Trouver un livre
+            form.center.form-inline(ng-submit="submit()")
+                .input-group
+                    input.form-control.search-query.span5(type="text", ng-model="query")
+                    span.input-group-btn
+                        button.btn.btn-default(type="submit")
+                            img.search-btn(src='/images/glasses-black.svg', alt="search")
+        .container(ng-class="{results : books.length > 0}")
+            .row(infinite-scroll="next()", infinite-scroll-distance="2")
+                book(ng-repeat="book in books", book="book")
+        footer
+            .footer-content
+                p.by Développé par
+            a(href="http://www.openify.it")
+                img(src='/images/openify-icon-white-small.png', alt="openify.it")
+
+
+        script
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-45913436-1', 'openify.it');
+            ga('send', 'pageview');
+
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
         script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
@@ -30,32 +59,3 @@ html(ng-app="librariesHub", lang="fr")
         script(type='text/javascript')
             var app = new LibrariesHub.Application();
             app.start();
-
-    body(ng-controller="HomeCtrl")
-        header.jumbotron
-            .center.search-logo
-                img(src='/images/glasses-white.svg', alt="logo biblio Québec")
-            h1 Trouver un livre
-            form.center.form-inline(ng-submit="submit()")
-                .input-group
-                    input.form-control.search-query.span5(type="text", ng-model="query")
-                    span.input-group-btn
-                        button.btn.btn-default(type="submit")
-                            img.search-btn(src='/images/glasses-black.svg', alt="search")
-        .container(ng-class="{results : books.length > 0}")
-            .row(infinite-scroll="next()")
-                book(ng-repeat="book in books", book="book")
-        footer
-            .footer-content
-                p.by Développé par
-            a(href="http://www.openify.it")
-                img(src='/images/openify-icon-white-small.png', alt="openify.it")
-
-
-        script
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-                      ga('create', 'UA-45913436-1', 'openify.it');
-            ga('send', 'pageview');
