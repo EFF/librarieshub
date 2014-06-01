@@ -48,34 +48,40 @@ header.jumbotron
 
 .results
     margin-bottom 150px
+    margin-top 25px
 
 .book
     position relative
     border solid 1px rgba(0, 0, 0, 0.1)
-    padding 20px 10px
+    padding 10px
     margin-bottom 10px
     p
-        margin-bottom 5px
-
+        margin 0
+    .book-thumbnail
+        float left
+        /*padding 0 10px*/
+        margin-right 10px
+    .book-title
+        overflow hidden
+    .book-details
+        width 70%
+        margin-top 10px
+    .row
+        margin-left 10px
+        margin-right 10px
     .links
         position absolute
-        bottom 0
-        right 0
-        padding-right 20px
-
+        bottom 20px
+        right 20px
         .provider
             width 32px
             height 32px
             background-position 0% 0%
             float left
-            margin-left 10px
-
         .provider-disable
             background-position 0% 100%
-
         .provider-amazon
             background-image url('../images/provider/amazon.png')
-
         .provider-library
             background-image url('../images/provider/library.png')
 
