@@ -22,7 +22,7 @@ LibrariesHub.controllers.Home = function ($scope, $http){
             $http.get('/api/search', {
                 params:{
                     q: $scope.query,
-                    offset: $scope.books.length
+                    from: $scope.books.length
                 }
             })
             .success(function(data) {
