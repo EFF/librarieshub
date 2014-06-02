@@ -47,7 +47,7 @@ LibrariesHub.controllers.Home = function ($scope, $http){
     var scrollToResultsIfFirstRequest = function(){
         if($scope.firstIteration){
             var headerBottom = angular.element('header').outerHeight();
-            angular.element('body').animate({scrollTop: headerBottom}, 600, 'swing');
+            angular.element('body,html').animate({scrollTop: headerBottom}, 600, 'swing');
             $scope.firstIteration = false;
         }
     };
