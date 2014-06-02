@@ -21,6 +21,7 @@ html(ng-app="librariesHub", lang="fr")
             form.center.form-inline(ng-submit="submit()")
                 .input-group
                     input.form-control.search-query.span5(type="text", ng-model="query")
+                    img.loading(src='/images/load.gif', alt="loading", style="display:none;")
                     span.input-group-btn
                         button.btn.btn-default(type="submit")
                             img.search-btn(src='/images/glasses-black.svg', alt="search")
