@@ -19,9 +19,10 @@ LibrariesHub.controllers.Home = function ($scope, $http){
     var getBooks = function(){
         if($scope.query && !$scope.busy){
             $scope.busy = true;
-            var loading = $('header .input-group .loading');
 
+            var loading = $('header .input-group .loading');
             loading.show();
+
             $http.get('/api/search', {
                 params:{
                     q: $scope.query,
@@ -31,7 +32,6 @@ LibrariesHub.controllers.Home = function ($scope, $http){
             .success(function(data) {
                 $scope.books.push.apply($scope.books, data.books);
                 $scope.busy = false;
-
                 loading.hide();
 
                 scrollToResultsIfFirstRequest();
@@ -39,7 +39,6 @@ LibrariesHub.controllers.Home = function ($scope, $http){
             .error(function(data, status){
                 $scope.books = [];
                 $scope.busy = false;
-
                 loading.hide();
             });
         }
