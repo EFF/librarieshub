@@ -20,7 +20,7 @@ html(ng-app="librariesHub", lang="fr")
             h1 Trouver un livre
             form.center.form-inline(ng-submit="submit()")
                 .input-group
-                    input.form-control.search-query.span5(type="text", ng-model="query", autofocus)
+                    input.form-control.search-query.span5(type="text", ng-model="query", autofocus, data-container="body", data-toggle="popover", data-trigger="manual")
                     img.loading(src='/images/load.gif', alt="loading", style="display:none;")
                     span.input-group-btn
                         button.btn.btn-default(type="submit")

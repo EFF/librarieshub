@@ -34,7 +34,18 @@ LibrariesHub.controllers.Home = function ($scope, $http){
                 $scope.busy = false;
                 loading.hide();
 
-                scrollToResultsIfFirstRequest();
+                if(data.books.length === 0) {
+                    $('header .input-group .search-query').popover({
+                        placement: "bottom",
+                        content: "Aucun résultat"
+                    });
+                    $('header .input-group .search-query').popover('show');
+                    setTimeout(function(){
+                        $('header .input-group .search-query').popover('hide');
+                    }, 3000);
+                } else {
+                    scrollToResultsIfFirstRequest();
+                }
             })
             .error(function(data, status){
                 $scope.books = [];
