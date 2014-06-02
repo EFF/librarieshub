@@ -10,6 +10,6 @@
         p Éditeur: {{book._source.editeur}}
         p Genre: {{book._source.type}}
     .links
-        a.provider.provider-amazon(ng-href="{{book._source.amazon_link}}", ng-show="book._source.amazon_link", tooltip="Disponible chez Amazon")
+        a.provider.provider-amazon(ng-href="{{book._source.amazon_link}}", target="_blank", ng-show="book._source.amazon_link", tooltip="Disponible chez Amazon")
         .provider.provider-amazon.provider-disable(ng-hide="book._source.amazon_link")
         .provider.provider-library(href="#", tooltip="Disponible à la bibliothèque de Saint-Albert")
