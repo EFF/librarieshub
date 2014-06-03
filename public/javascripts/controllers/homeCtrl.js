@@ -35,13 +35,14 @@ LibrariesHub.controllers.Home = function ($scope, $http){
                 loading.hide();
 
                 if(data.books.length === 0) {
-                    $('header .input-group .search-query').popover({
+                    var searchBarElement = $('header .input-group .search-query');
+                    searchBarElement.popover({
                         placement: "bottom",
                         content: "Aucun résultat"
                     });
-                    $('header .input-group .search-query').popover('show');
+                    searchBarElement.popover('show');
                     setTimeout(function(){
-                        $('header .input-group .search-query').popover('hide');
+                        searchBarElement.popover('hide');
                     }, 3000);
                 } else {
                     scrollToResultsIfFirstRequest();
